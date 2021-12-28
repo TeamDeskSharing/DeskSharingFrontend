@@ -1,0 +1,12 @@
+{
+    "app.header":"Editiere <code>{fileName}<code> js und speichern zum laden.",
+    "app.content":"Moin Moin",
+    "app.channel.plug":" mit {channelName}",
+    "slider.title":"MEIN TISCH IST DEIN TISCH",
+    "navbar.home":"Start",
+    "navbar.services":"Dienstleistungen",
+    "navbar.products":"Produkte",
+    "narvar.login":"Einloggen"
+    
+    
+}

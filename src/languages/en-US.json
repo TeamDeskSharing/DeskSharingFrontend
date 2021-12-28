@@ -1,0 +1,12 @@
+{
+    "app.header":"Edit <code>{fileName}<code> js and save to reload.",
+    "app.content":"sup bro ",
+    "app.channel.plug":" brought to you by {channelName}",
+    "slider.title":"My table is your table",
+    "navbar.home":"Home",
+    "navbar.services":"Services",
+    "navbar.products":"Products",
+    "navbar.login":"Sign Up"
+    
+    
+}
