@@ -15,6 +15,8 @@ import login from './components/pages/Login.js'
 import products from './components/pages/Products.js'
 import home from './components/pages/Home.js';
 import Services from './components/pages/Services.js'
+import EmployeeList from './components/pages/EmployeeList';
+import AdminBooking from './components/pages/AdminBooking';
 //import styles from './components/css/styles.css'
 function App() {
   //const context = useContext(Context)
@@ -61,26 +63,8 @@ function App() {
 
       </Router>
 
-{/* 
-      <h1 style={{color:'red'}}>
-        <FormattedMessage
-          id="app.content"
-        >
-        </FormattedMessage>
-      </h1>
-
-<p style = {{color:'red'}}>     
- <FormattedMessage
-        id="app.channel.plug"
-        values={{ channelName: "DESKSHARING" }}
-      >
-
-  </FormattedMessage></p>
- */}
 
 
-   {/*    <Home></Home>
- */}
 
       <h1 style={{ color: 'red' }}>
       <Typed className="typed-text"
@@ -92,19 +76,9 @@ function App() {
       </h1>
 
 
-{/*       <div
-        style={{
-          height: '50px',
-          width: '100%',
-          backgroundColor: "#101522",
-          position: 'relative'
-        }}>
 
-
-
-      </div> */}
-
-
+{/* <EmployeeList></EmployeeList>  */}
+<AdminBooking></AdminBooking>
 
 
             <Slider></Slider>

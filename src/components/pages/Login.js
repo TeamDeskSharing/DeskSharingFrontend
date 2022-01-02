@@ -10,6 +10,7 @@ function Login(props) {
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
     const [token, setToken] = useCookies(['mytoken'])
+    const [testSave, setTestSave] = useState('myTestSave')
     const [isLogin, setLogin] = useState(true)
   // let history = useHistory()
 
@@ -53,7 +54,7 @@ function Login(props) {
         headers.append('GET', 'POST', 'OPTIONS');
             
           
-    function getStudent()
+        function getStudent( )
 
     {
 
@@ -74,6 +75,33 @@ function Login(props) {
 
     }
 
+    function getTokenTest(){
+        console.log(testSave);
+    }
+
+
+    function getAllEmployees(id)
+
+    {
+
+        return fetch(`http://127.0.0.1:8000/api/v1/employees/getAllEmployees/`,{
+            'method':'GET',
+            headers:{
+
+                'Content-Type':'Authorization',
+                'Accept': 'application/json',
+                'Authorization':'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhbm5hc21pdGgiLCJhdXRob3JpdGllcyI6W3siYXV0aG9yaXR5IjoiUk9MRV9TVFVERU5UIn1dLCJpYXQiOjE2NDA2MTkxNjgsImV4cCI6MTY0MTQyMzYwMH0.HUxAI7TfHzsLT058lQi-icEhN07IPhJac86sQ5QK6y_0xqeCuh2R_1fho9Un7_DASABZ3jX2uwAgVgr-kVaxkQ'
+
+            },
+           // body:JSON.stringify(body)
+
+        }).then (resp => resp.json())
+    
+        .then(resp => console.log(resp));
+
+
+    }
+
     
 
 
@@ -81,7 +109,11 @@ function Login(props) {
         const loginBtn = () => {
             ApiService.loginUser({username, password})
             //.then(resp => console.log(resp))
-            .then(resp => setToken('mytoken',resp.token))
+/*             .then(resp => setToken('mytoken',resp.token))
+            .then(resp => console.log('hi'+resp.token))
+            .then(data => console.log('hi'+data.token)) */
+
+            //.then(resp => setTestSave('myTestSave', resp))
             .catch(error => console.log(error))
     
         }   
@@ -151,6 +183,7 @@ function Login(props) {
                 }
 
                 <button onClick={getStudent}>getStudentTest</button>
+                <button onClick = {getTokenTest}>getTokenTest</button>
 
             </div>
 

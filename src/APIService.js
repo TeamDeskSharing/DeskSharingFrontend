@@ -74,7 +74,8 @@ export default class ApiService{
       static loginUser(body){
           return axios.post('http://127.0.0.1:8080/login', body)
           .then(resp => {
-              console.log(resp)
+           //   console.log(resp.data)
+             localStorage.setItem("token",resp.data)
  /*              resp.json().then((result)=>{
                   console.warn("result",result);
                   localStorage.setItem('login', JSON.stringify({
@@ -84,6 +85,13 @@ export default class ApiService{
                   )
               }) */
           })
+
+          .then(localStorage.setItem("username", body.username))
+          .then(resp => localStorage.setItem("token", resp.data))
+     
+          //.then(localStorage.setItem("token", resp => resp))
+          //.then(resp => localStorage.setItem("token2", JSON.stringify(resp.data)))
+
           .catch(error=>{
               console.log(error)
           })
