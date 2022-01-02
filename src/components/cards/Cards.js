@@ -56,22 +56,22 @@ function Cards() {
 
 
               src='https://sketchfab.com/models/d7b857dfd9c14611b1e7423c671b4f73/embed'
-              text='Sample Office'
+              text='Buchen Sie einen Platz in Büro Donkey Kong'
             
-              label='A'
-              path='/services'
+              label='Büro Donkey Kong'
+              path='/officedonkeykong'
             />
             <CardItem
               src='https://sketchfab.com/models/f2992a1ec6454ab5bb5b4a0c09973e24/embed'
-              text='Sample Office'
-              label='B'
-              path='/products'
+              text='Buchen Sie einen Platz in Büro Bowser'
+              label='Bowser'
+              path='/officeBowser'
             />
             <CardItem
               src='https://sketchfab.com/models/24de5497539a4eccb5bb17285d2155bd/embed'
-              text='Sample Office'
-              label='C'
-              path='/sign-up'
+              text='Buchen Sie einen Platz in Büro Mario'
+              label='Mario'
+              path='/officeMario'
             />
           </ul>
           

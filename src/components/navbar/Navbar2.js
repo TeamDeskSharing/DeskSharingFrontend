@@ -85,6 +85,14 @@ function Navbar2() {
                                     </FormattedMessage>
                                 </NavLinks>
                             </NavItem>
+                            <NavItem>
+                                <NavLinks to='/employeefinder' onClick={closeMobileMenu}>
+                                    <FormattedMessage
+                                        id="navbar.employeefinder">
+                                      
+                                    </FormattedMessage>
+                                </NavLinks>
+                            </NavItem>
                             <NavItemBtn>
                                 {button ? (
                                     <NavBtnLink to='/login'>

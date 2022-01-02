@@ -82,14 +82,7 @@ function App() {
    {/*    <Home></Home>
  */}
 
-      <h1 style={{ color: 'red' }}>
-      <Typed className="typed-text"
-          strings={["Are you ready to take a table?", "Choose your office!"
-          ]}
-          typeSpeed={30}
-          backSpeed={8}
-        ></Typed>
-      </h1>
+
 
 
 {/*       <div
@@ -104,7 +97,30 @@ function App() {
 
       </div> */}
 
+<div style={
+  
+  
+  
 
+
+
+
+
+  
+  {marginTop:'50vh'     
+      
+    }}>
+
+    </div>
+
+<h1 style={{ color: 'red' }}>
+      <Typed className="typed-text"
+          strings={["Are you ready to take a table?", "Choose your office!"
+          ]}
+          typeSpeed={30}
+          backSpeed={8}
+        ></Typed>
+      </h1>
 
 
             <Slider></Slider>

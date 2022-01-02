@@ -4,8 +4,8 @@
     "app.channel.plug":" mit {channelName}",
     "slider.title":"MEIN TISCH IST DEIN TISCH",
     "navbar.home":"Start",
-    "navbar.services":"Dienstleistungen",
-    "navbar.products":"Produkte",
+    "navbar.services":"Buchungsanfrage",
+    "navbar.products":"Buchungen Admin",
     "narvar.login":"Einloggen"
     
     
