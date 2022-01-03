@@ -14,7 +14,8 @@ import earthSpec from '../../assets/images/landingpage/earthspec1k.jpg'
 //import styled from 'styled-components'
 
 
-
+import Slider from "../slideshow/Slider"
+import Typed from 'react-typed'
 /* const Div1 = styled.div`
     padding: 4rem;
     display: flex;
@@ -483,6 +484,18 @@ class Home extends Component {
                 >
                     <canvas id='c'></canvas>
                 </div>
+
+                <h1 style={{ color: 'red' }}>
+      <Typed className="typed-text"
+          strings={["Are you ready to take a table?", "Choose your office!"
+          ]}
+          typeSpeed={30}
+          backSpeed={8}
+        ></Typed>
+      </h1>
+
+
+          
 
 
 

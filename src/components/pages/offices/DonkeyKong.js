@@ -10,14 +10,16 @@ import axios from 'axios';
 
 class DonkeyKong extends Component {
     
+
     constructor(props) {
         super(props)
 
 
         this.state = {
-            deskId:'',
-            starttime:'',
-            endtime:'',
+            id:"5",
+            workplace:"",
+            timestart:"",
+            timeend:"",
    /*          item: '',
             quantity: '',
             amount: '',
@@ -34,13 +36,13 @@ class DonkeyKong extends Component {
     }
 
     changeDeskId =(e) =>{
-        this.setState({deskId:e.target.value})
+        this.setState({workplace:e.target.value})
     }
     changeStarttime = (e) =>{
-        this.setState({starttime:e.target.value})
+        this.setState({timestart:e.target.value})
     }
     changeEndtime = (e) => {
-        this.setState({endtime:e.target.value})
+        this.setState({timeend:e.target.value})
     }
 
   /*   changeItem = (e) => {
@@ -79,9 +81,13 @@ class DonkeyKong extends Component {
         this.setState({[e.target.value]: e.target.value})
     }
 
+
+
+
     submitHandler = e => {
         e.preventDefault()
         console.log(this.state)
+       //let token = localStorage.getItem('token');
         ApiService.sendBookingRequest(this.state)
         
     }
@@ -132,20 +138,20 @@ class DonkeyKong extends Component {
                                         </div>
                                         <div className="form-group">
                                             <label> Buchung für Platz: </label>
-                                            <input type="text" placeholder="Platznummer" name="deskId" className="form-control"
-                                                value={this.state.deskId} onChange={this.changeDeskId} />
+                                            <input type="text" placeholder="Platznummer" name="id" className="form-control"
+                                                value={this.state.workplace} onChange={this.changeDeskId} />
     
                                         </div>
                                         <div className="form-group">
                                             <label> Startzeit: </label>
                                             <input placeholder="Startzeit" name="starttime" className="form-control"
-                                                value={this.state.starttime} onChange={this.changeStarttime} />
+                                                value={this.state.timestart} onChange={this.changeStarttime} />
                                                 {/* <TimePicker onChange={this.state.onChange} value={this.state.onChange}></TimePicker> */}
                                         </div>
                                         <div className="form-group">
                                             <label> Endzeit: </label>
                                             <input placeholder="Endzeit" name="endtime" className="form-control"
-                                                value={this.state.endtime} onChange={this.changeEndtime} />
+                                                value={this.state.timeend} onChange={this.changeEndtime} />
                                                                                              {/*    <TimePicker onChange={this.state.onChange} value={this.state.onChange}></TimePicker> */}
 
                                         </div>

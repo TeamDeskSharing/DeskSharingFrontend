@@ -86,9 +86,17 @@ function Navbar2() {
                                 </NavLinks>
                             </NavItem>
                             <NavItem>
-                                <NavLinks to='/employeefinder' onClick={closeMobileMenu}>
+                                <NavLinks to='/employeelist' onClick={closeMobileMenu}>
                                     <FormattedMessage
                                         id="navbar.employeefinder">
+                                      
+                                    </FormattedMessage>
+                                </NavLinks>
+                            </NavItem>
+                            <NavItem>
+                                <NavLinks to='/adminbooking' onClick={closeMobileMenu}>
+                                    <FormattedMessage
+                                        id="navbar.adminbooking">
                                       
                                     </FormattedMessage>
                                 </NavLinks>
