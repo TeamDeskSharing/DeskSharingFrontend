@@ -45,6 +45,18 @@ class DonkeyKong extends Component {
         this.setState({timeend:e.target.value})
     }
 
+ 
+    getWorkingPlace = (e) => {
+        this.setState({workplace:'DK1'})
+    }
+    getWorkingPlace2 = (e) => {
+        this.setState({workplace:'DK2'})
+    }
+    getWorkingPlace3 = (e) => {
+        this.setState({workplace:'DK3'})
+    }
+
+
   /*   changeItem = (e) => {
         this.setState({ item: e.target.value })
     }
@@ -77,6 +89,7 @@ class DonkeyKong extends Component {
     cancel() {
         this.props.history.push('/services');
     }
+
     changeHandler = e => {
         this.setState({[e.target.value]: e.target.value})
     }
@@ -95,8 +108,8 @@ class DonkeyKong extends Component {
     render() {
 
     
-
         return (
+            
             <div>
             <h1>Hi Donkey</h1>
            
@@ -114,9 +127,9 @@ class DonkeyKong extends Component {
             <map name="floormap">
     
     
-            <area shape="circle" coords="90,460,30" alt="Platz1" href="DK1"/*  onClick={sendBookingRequest} */></area>
-            <area shape="circle" coords="230,460,30" alt="Platz2" href="DK2"></area>
-            <area shape="circle" coords="410,460,30" alt="Platz2" href="DK3"></area>
+            <area shape="circle" coords="90,460,30" alt="Platz1"   onClick={this.getWorkingPlace}></area>
+            <area shape="circle" coords="230,460,30" alt="Platz2"  onClick={this.getWorkingPlace2}></area>
+            <area shape="circle" coords="410,460,30" alt="Platz3"  onClick={this.getWorkingPlace3}></area>
     
     
             </map>

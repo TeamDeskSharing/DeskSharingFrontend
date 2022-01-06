@@ -10,13 +10,13 @@ function CardItem(props) {
       <li className='cards__item'>
         <Link className='cards__item__link' to={props.path}>
           <figure className='cards__item__pic-wrap' data-category={props.label}>
-{/*             <img
+            {/*             <img
               className='cards__item__img'
               src={props.src}
             /> */}
 
             <div className="sketchfab-embed-wrapper">
-            <iframe title="Office" frameBorder="0" src={props.src}> </iframe> 
+              <iframe title="Office" frameBorder="0" src={props.src}> </iframe>
 
 
             </div>

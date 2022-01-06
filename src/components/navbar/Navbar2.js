@@ -50,10 +50,10 @@ function Navbar2() {
                 <Nav>
                     <NavbarContainer>
                         <NavLogo to='/' onClick={closeMobileMenu}>
-                            <img style={{height:40, width:40}}src={tableIcon} alt="Desksharing Logo" />
+                            <img style={{ height: 40, width: 40 }} src={tableIcon} alt="Desksharing Logo" />
 
                             DESKSHARING APP
-                            <img style={{height:40, width:40}}src={tableIcon} alt="Desksharing Logo" />
+                            <img style={{ height: 40, width: 40 }} src={tableIcon} alt="Desksharing Logo" />
 
                         </NavLogo>
                         <MobileIcon onClick={handleClick}>
@@ -89,7 +89,7 @@ function Navbar2() {
                                 <NavLinks to='/employeelist' onClick={closeMobileMenu}>
                                     <FormattedMessage
                                         id="navbar.employeefinder">
-                                      
+
                                     </FormattedMessage>
                                 </NavLinks>
                             </NavItem>
@@ -97,7 +97,7 @@ function Navbar2() {
                                 <NavLinks to='/adminbooking' onClick={closeMobileMenu}>
                                     <FormattedMessage
                                         id="navbar.adminbooking">
-                                      
+
                                     </FormattedMessage>
                                 </NavLinks>
                             </NavItem>
@@ -105,18 +105,18 @@ function Navbar2() {
                                 {button ? (
                                     <NavBtnLink to='/login'>
                                         <Button primary>
-{/*                                   <FormattedMessage
+                                            {/*                                   <FormattedMessage
                                          id="navbar.login" >
 
                                         </FormattedMessage> */}
-                                        Login
-                                        
+                                            Login
+
                                         </Button>
                                     </NavBtnLink>
                                 ) : (
                                     <NavBtnLink to='/sign-up'>
                                         <Button onClick={closeMobileMenu} fontBig primary>
-   {/*                                          <FormattedMessage
+                                            {/*                                          <FormattedMessage
                                                 id="navbar.login">
 
                                             </FormattedMessage> */}
@@ -137,7 +137,7 @@ function Navbar2() {
 
 
 
-                  
+
 
                         </NavMenu>{/*  */}
                     </NavbarContainer>

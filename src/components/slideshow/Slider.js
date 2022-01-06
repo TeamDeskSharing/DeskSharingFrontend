@@ -23,8 +23,8 @@ function Slider() {
             <span> {String.fromCharCode(9773)}</span>
             <h1 style={{
               color: 'red',
-              fontWeight:'bold'
-              
+              fontWeight: 'bold'
+
             }}
             >
               <FormattedMessage
@@ -42,7 +42,7 @@ function Slider() {
             <h1 style={{
 
               color: 'white',
-              fontWeight:'bold'
+              fontWeight: 'bold'
 
             }}
             ><FormattedMessage
@@ -58,7 +58,7 @@ function Slider() {
             <h1 style={{
 
               color: 'white',
-              fontWeight:'bold'
+              fontWeight: 'bold'
 
             }}
             ><FormattedMessage

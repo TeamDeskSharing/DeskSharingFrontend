@@ -377,7 +377,7 @@ class Home extends Component {
 
 
         function animate() {
-               resize();
+            resize();
 
             /*         if (resizeRendererToDisplaySize(renderer)) {
                         const canvas = renderer.domElement;
@@ -433,20 +433,20 @@ class Home extends Component {
                 }}>
 
 
-      <h1 style={{color:'red'}}>
-        <FormattedMessage
-          id="app.content"
-        >
-        </FormattedMessage>
-      </h1>
+                <h1 style={{ color: 'red' }}>
+                    <FormattedMessage
+                        id="app.content"
+                    >
+                    </FormattedMessage>
+                </h1>
 
-<p style = {{color:'red'}}>     
- <FormattedMessage
-        id="app.channel.plug"
-        values={{ channelName: "DESKSHARING" }}
-      >
+                <p style={{ color: 'red' }}>
+                    <FormattedMessage
+                        id="app.channel.plug"
+                        values={{ channelName: "DESKSHARING" }}
+                    >
 
-  </FormattedMessage></p>
+                    </FormattedMessage></p>
 
 
 
@@ -486,16 +486,16 @@ class Home extends Component {
                 </div>
 
                 <h1 style={{ color: 'red' }}>
-      <Typed className="typed-text"
-          strings={["Are you ready to take a table?", "Choose your office!"
-          ]}
-          typeSpeed={30}
-          backSpeed={8}
-        ></Typed>
-      </h1>
+                    <Typed className="typed-text"
+                        strings={["Are you ready to take a table?", "Choose your office!"
+                        ]}
+                        typeSpeed={30}
+                        backSpeed={8}
+                    ></Typed>
+                </h1>
 
 
-          
+
 
 
 

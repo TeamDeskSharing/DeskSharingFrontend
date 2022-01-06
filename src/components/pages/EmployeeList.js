@@ -10,10 +10,13 @@ ihm über den Browser ein Grundriss über die Gebäude, die vorhandenen
 Büros und die buchbaren Arbeitsplätze angezeigt. Durch Anklicken kann
 er einen Arbeitsplatz auswählen und seinen Buchungswunsch
 hinterlegen. --> POST BOOKING REQUEST, GET WORKSPACE BY STATUS
+
 • Der Administrator kann nach erfolgreicher Buchungsanfrage jede
 einzelne Buchungsanfrage bestätigen oder ablehnen. In beiden Fällen
 wird an die für den Anfrager hinterlegte Mail-Adresse eine Bestätigungsoder
 Absage-Mail verschickt. --> PUT BOOKING REQUEST + POST MAIL 
+
+
 • Ein User kann sich im System alle vom ihm erstellten Buchungsanfragen
 ansehen lassen, ebenfalls kann er sich tabellarisch die bestätigten sowie
 die abgelaufenen Buchungen darstellen lassen. -->  GETBOOKING BY STATUS , GET BOOKING BY NAME
@@ -51,7 +54,7 @@ function EmployeeList() {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization':`Bearer ${token}`
+                'Authorization': `Bearer ${token}`
 
             }
 
@@ -75,10 +78,10 @@ function EmployeeList() {
 
     }
 
-/*     function deleteSales(id) {
-        SalesService.deleteSales(id);
-        window.location.reload(false);
-    } */
+    /*     function deleteSales(id) {
+            SalesService.deleteSales(id);
+            window.location.reload(false);
+        } */
 
 
     return (
@@ -118,8 +121,8 @@ function EmployeeList() {
                                     <td>
                                         <button onClick={() => editSales(e.id)} className="btn btn-info">Update </button>
 
-                                        <button style={{ marginLeft: "10px" }}  className="btn btn-danger">Delete </button>
-                                    
+                                        <button style={{ marginLeft: "10px" }} className="btn btn-danger">Delete </button>
+
 
                                     </td>
 

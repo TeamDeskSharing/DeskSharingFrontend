@@ -13,14 +13,14 @@ let lang = Deutsch;
 
 if (local === "en-US") {
     lang = English;
-} 
-if(local === "es-MX"){
+}
+if (local === "es-MX") {
     lang = Spanish;
 }
-if(local === "de-DE") {
+if (local === "de-DE") {
     lang = Deutsch;
 }
-if(local === "ru-RU"){
+if (local === "ru-RU") {
     lang = Russisch;
 }
 
@@ -37,21 +37,21 @@ function Wrapper(props) {
         if (newLocale === "de-DE") {
             setMessages(Deutsch);
 
-        } 
-        if(newLocale === "es-MX"){
+        }
+        if (newLocale === "es-MX") {
             setMessages(Spanish);
         }
-        if(newLocale ==="en-US") {
+        if (newLocale === "en-US") {
             setMessages(English);
         }
-        if(newLocale ==="ru-RU"){
+        if (newLocale === "ru-RU") {
             setMessages(Russisch)
         }
 
     }
 
     return (
-        <Context.Provider value={{locale, selectLang}}>
+        <Context.Provider value={{ locale, selectLang }}>
             <IntlProvider messages={messages} locale={locale}>
                 {props.children}
             </IntlProvider>
