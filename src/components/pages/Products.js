@@ -1,187 +1,172 @@
+import React, { useState } from 'react'
+import { useHistory } from 'react-router-dom';
 
-import Typed from 'react-typed';
-
-
-import React, { Component } from 'react';
-import ApiService from '../../APIService';
-/* Der Administrator kann nach erfolgreicher Buchungsanfrage jede
-einzelne Buchungsanfrage bestätigen oder ablehnen. In beiden Fällen
-wird an die für den Anfrager hinterlegte Mail-Adresse eine Bestätigungsoder Absage-Mail verschickt. */
+import '../css/styles.css'
+import '../../index.css'
 
 
-/* 1. get all bookings 
-    2. put/post booking?
-    3. send email
+function Products() {
+
+
+
+    const [sales, setSales] = React.useState([]);
+    const [myUrl, setMyUrl] = React.useState();
+
+
+
+
+
+   function getEmployeeIdByName(name) {
+        const tokenLS = localStorage.getItem('token');
     
-    */
-/* const Products = () => {
-
-
-  return (
-
+        return fetch(`http://localhost:8080/api/v1/employee/findEmployeeByUsername/${name}`, {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${tokenLS}`}
+        })
+        .then((response) => {
+          if(response.ok) {
+            return response.json();
+          } else {
+            throw new Error('Server response wasn\'t OK');
+          }
+        })
     
-    
-    <div
-    
- 
-      style={{
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        height: '60vh'
-      }}
-    >
+        .then(res => {
+          return 'http://127.0.0.1:8080/api/v1/booking/findBookingsByEmployee/'+ res.id;
+        })
+       }
 
+       let name = localStorage.getItem('username');
 
-    
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <Typed 
-        className="typed-text"
-        strings={[" Der Administrator kann nach erfolgreicher Buchungsanfrage jede einzelne Buchungsanfrage bestätigen oder ablehnen.",
-       
-      "In beiden Fällen wird an die für den Anfrager hinterlegte Mail-Adresse eine Bestätigungsoder Absage-Mail verschickt ", 
-      "Lets go",
-      ]}
-        typeSpeed={30}
-        backSpeed={8}
-        ></Typed>
+       getEmployeeIdByName(name).then((employeeid)=>{
 
-    </div>
-
-  );
-};
-
-
-
-
-export default Products; */
-
-
-class Products extends Component {
-
-
-
-  componentDidMount() {
-
-    const url = "http://127.0.0.1:8080/api/v1/booking/getAllBookings";
-    const tokenLS = localStorage.getItem('token');
-
-
-    fetch(url, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${tokenLS}`
-
-      }
-
-    })
-      .then(res => res.json())
-      .then(res => this.setState({ bookings: res }))
-      .catch(err => console.log(err.message));
-
-
-
-
-
-  }
-
-  constructor(props) {
-    super(props)
-
-
-    this.state = {
-      /*           id:"",
-                workplace:"",
-                timestart:"",
-                timeend:"", */
-
-      bookings: []
-
-    }
-
-    /*       this.changeDeskId = this.changeDeskId.bind(this);
-          this.changeStarttime = this.changeStarttime.bind(this);
-          this.changeEndtime = this.changeEndtime.bind(this);
-    
-          this.submitHandler = this.submitHandler.bind(this); */
-  }
-
-  /*   changeDeskId =(e) =>{
-        this.setState({workplace:e.target.value})
-    }
-    changeStarttime = (e) =>{
-        this.setState({timestart:e.target.value})
-    }
-    changeEndtime = (e) => {
-        this.setState({timeend:e.target.value})
-    }
-  
-  
-    getWorkingPlace = (e) => {
-        this.setState({workplace:'DK1'})
-    }
-    getWorkingPlace2 = (e) => {
-        this.setState({workplace:'DK2'})
-    }
-    getWorkingPlace3 = (e) => {
-        this.setState({workplace:'DK3'})
-    }
-  
-  
-  
-    cancel() {
-        this.props.history.push('/services');
-    }
-  
-    changeHandler = e => {
-        this.setState({[e.target.value]: e.target.value})
-    }
-  
-  
-  
-  
-    submitHandler = e => {
-        e.preventDefault()
-        console.log(this.state)
-       //let token = localStorage.getItem('token');
-        ApiService.sendBookingRequest(this.state)
+        return `http://127.0.0.1:8080/api/v1/booking/findBookingsByEmployee/${employeeid}`;
         
-    } */
+           
+       })
 
-  acceptBooking = (e) => {
-    this.setState({ id: 5 })
-    this.setState({ status: 'booked' })
+       const url = getEmployeeIdByName(name);
+       console.log(url)
+
+       const printAddress = () => {
+        url.then((a) => {     
+          setMyUrl(a);
+          console.log(myUrl)
+        });
+      };
+
+      printAddress()
+
+       const tokenLS = localStorage.getItem('token') 
+       React.useEffect(() => {
+           fetch(myUrl, {
+               method: 'GET',
+               headers: {
+                   'Content-Type': 'application/json',
+                   'Authorization': `Bearer ${tokenLS}`
+   
+               }
+   
+           })
+               .then(res => res.json())
+               .then(sales => setSales(sales))
+               .catch(err => console.log(err.message));
+       }, []);
+   
 
 
-    console.log(this.state.bookings[1])
-    //get booking by id
-    ApiService.sendBookingRequest(this.state.bookings[4])
-  }
 
-  render() {
+
+
+
+
+
+
+    function declineBooking(id) {
+        return fetch(`http://localhost:8080/api/v1/booking/updateAbgelehnt/${id}`, {
+            'method': 'PUT',
+            headers: {
+
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+                'Authorization': `Bearer ${tokenLS}`
+            },
+         /*    body: JSON.stringify(body) */
+
+        }).then(resp => console.log(resp.json()))
+
+
+
+    }
+
+ 
 
 
     return (
+        <div>
 
-      <div>
-        <h1>Hi Admin</h1>
+            <h2  style={{color:"white"}} className="text-center">Buchungsanfragen Liste</h2>
+            <div className="row">
+
+            </div>
+
+            <div className="row">
+                <table className="table table-striped table-bordered">
+
+                    <thead>
+                        <tr>
+                            <th style={{color:"white"}}>ID</th>
+                            <th  style={{color:"white"}}>Mitarbeiter</th>
+                            <th style={{color:"white"}}>Startzeit</th>
+                            <th style={{color:"white"}}>Endzeit</th>
+                            <th style={{color:"white"}}>Status</th>
+                            <th style={{color:"white"}}>Actions</th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+                        {sales.map(
+                            e =>
+                                <tr key={e.id}>
+                                    <td style={{color:"white"}}>{e.id}</td>
+                                    <td style={{color:"white"}}>{e.employee.firstname}</td>
+                                    <td style={{color:"white"}}>{e.timestart}</td>
+                                    <td style={{color:"white"}}>{e.timeend}</td>
+                                    <td style={{color:"white"}}>{e.status}</td>
+                                    <td>
+                                    <button style={{ marginLeft: "10px" }} onClick={() => declineBooking(e.id)} className="btn btn-danger">Auschecken </button>
+
+{/* {
+ e.status == "akzeptiert" ? (
+    <button style={{ marginLeft: "10px" }} onClick={() => declineBooking(e.id)} className="btn btn-danger">Auschecken </button>
+)  : {} 
+} */}
+                                         
+                                      
+                                        {/* <button style={{ marginLeft: "10px" }} onClick={() => this.viewSales(e.id)} className="btn btn-info">View </button> */}
+
+                                    </td>
 
 
-        {this.state.bookings.map(booking => <div>{booking.id}.{booking.workplace}.{booking.status}</div>)}
-        <button className="btn btn-success" onClick={this.acceptBooking}>Bestätigen</button>
+                                </tr>
+                        )}
+
+                    </tbody>
+
+
+                </table>
 
 
 
+            </div>
 
 
 
-      </div>
-    );
-  }
+        </div>
+    )
 }
-
-export default Products;
+export default Products

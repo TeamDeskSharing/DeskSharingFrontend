@@ -5,8 +5,10 @@
     "slider.title":"Мой стол твой стол",
     "navbar.home":"Начинать",
     "navbar.services":"Сервисы",
-    "navbar.products":"продукты",
-    "narvar.login":"авторизоваться"
+    "navbar.products":"мои бронирования",
+    "narvar.login":"авторизоваться",
+    "navbar.employeefinder":"митарбайтер авторизоваться",
+    "navbar.adminbooking":"Админ резервирование"
     
 
 }

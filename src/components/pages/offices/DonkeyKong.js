@@ -3,9 +3,6 @@ import testfloor from '../../../assets/images/floorplans/Grundrisstest.png'
 
 import React, { Component } from 'react';
 import ApiService from '../../../APIService';
-import TimePicker from 'react-time-picker';
-import axios from 'axios';
-
 
 
 class DonkeyKong extends Component {
@@ -16,15 +13,14 @@ class DonkeyKong extends Component {
 
 
         this.state = {
-            id:"5",
-            workplace:"",
+           
+         
             timestart:"",
             timeend:"",
-   /*          item: '',
-            quantity: '',
-            amount: '',
-            value:'',
-            onChange:'' */
+            status:"schwebend",
+            employee:{id:""},
+            workplace:{id:""},
+           
 
         }
 
@@ -33,11 +29,45 @@ class DonkeyKong extends Component {
         this.changeEndtime = this.changeEndtime.bind(this);
 
         this.submitHandler = this.submitHandler.bind(this);
+
     }
 
-    changeDeskId =(e) =>{
-        this.setState({workplace:e.target.value})
+    componentDidMount(){
+
+        const tokenLS = localStorage.getItem('token');
+        const username =  localStorage.getItem('username');
+
+        return fetch(`http://localhost:8080/api/v1/employee/findEmployeeByUsername/${username}`, {
+            'method': 'GET',
+            headers: {
+
+                'Content-Type': 'Authorization',
+                'Accept': 'application/json',
+                'Authorization': `Bearer ${tokenLS}`
+
+            },
+            // body:JSON.stringify(body)
+
+        }).then(resp => resp.json())
+            .then(resp =>  this.setState({employee:{id:resp.id}})   
+            )
+            .then(resp => console.log(resp));
+    
+      
+            
+
+    
+
     }
+
+   
+
+
+
+    
+    
+
+
     changeStarttime = (e) =>{
         this.setState({timestart:e.target.value})
     }
@@ -45,45 +75,22 @@ class DonkeyKong extends Component {
         this.setState({timeend:e.target.value})
     }
 
- 
+    changeDeskId = (e)=>{
+        this.setState({workplace:{id:e.target.value}})   
+    }
+
     getWorkingPlace = (e) => {
-        this.setState({workplace:'DK1'})
+        this.setState({workplace:{id:'1'}})   
     }
+
     getWorkingPlace2 = (e) => {
-        this.setState({workplace:'DK2'})
+        this.setState({workplace:{id:'2'}})   
     }
-    getWorkingPlace3 = (e) => {
-        this.setState({workplace:'DK3'})
+    getWorkingPlace3= (e) => {
+        this.setState({workplace:{id:'3'}})   
     }
+ 
 
-
-  /*   changeItem = (e) => {
-        this.setState({ item: e.target.value })
-    }
-
-
-    changeQuantity = (e) => {
-        this.setState({ quantity: e.target.value })
-    }
-    changeAmount = (e) => {
-        this.setState({ amount: e.target.value })
-    }
-
-    saveSales = (e) => {
-        e.preventDefault();
-        let salesposition = { item: this.state.item, quantity: this.state.quantity, amount: this.state.amount };
-        console.log('salesposition => ' + JSON.stringify(salesposition));
-
-
-        ApiService.insertArticle(salesposition).then(res=>{
-            this.props.history.push('/sales');
-        })
-        window.location.reload(false);
-
-
-    }
-
-   */
 
 
     cancel() {
@@ -100,7 +107,6 @@ class DonkeyKong extends Component {
     submitHandler = e => {
         e.preventDefault()
         console.log(this.state)
-       //let token = localStorage.getItem('token');
         ApiService.sendBookingRequest(this.state)
         
     }
@@ -133,7 +139,6 @@ class DonkeyKong extends Component {
     
     
             </map>
-       {/*      <button onClick={sendBookingRequest}>getStudentTest</button> */}
 
        {/* INPUT FIELDS */}
 
@@ -151,26 +156,25 @@ class DonkeyKong extends Component {
                                         </div>
                                         <div className="form-group">
                                             <label> Buchung für Platz: </label>
-                                            <input type="text" placeholder="Platznummer" name="id" className="form-control"
-                                                value={this.state.workplace} onChange={this.changeDeskId} />
+                                            <input type="text" placeholder="Platz im Plan wählen" name="id" className="form-control"
+                                                value={this.state.workplace.id} onChange={this.changeDeskId} readonly="false"/>
     
                                         </div>
                                         <div className="form-group">
                                             <label> Startzeit: </label>
                                             <input placeholder="Startzeit" name="starttime" className="form-control"
                                                 value={this.state.timestart} onChange={this.changeStarttime} />
-                                                {/* <TimePicker onChange={this.state.onChange} value={this.state.onChange}></TimePicker> */}
                                         </div>
                                         <div className="form-group">
                                             <label> Endzeit: </label>
                                             <input placeholder="Endzeit" name="endtime" className="form-control"
                                                 value={this.state.timeend} onChange={this.changeEndtime} />
-                                                                                             {/*    <TimePicker onChange={this.state.onChange} value={this.state.onChange}></TimePicker> */}
 
                                         </div>
     
                                         <button className="btn btn-success" onClick={this.submitHandler}>Buchungsanfrage senden</button>
-    
+
+
                                         <button className="btn btn-danger" onClick={this.cancel.bind(this)} style={{ marginLeft: "10px" }}>Abbrechen</button>
     
                                     </form>
@@ -180,6 +184,7 @@ class DonkeyKong extends Component {
                         </div>
     
                     </div>
+                   
     
            </div>
            <br></br>

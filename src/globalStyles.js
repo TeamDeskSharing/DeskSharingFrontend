@@ -23,7 +23,12 @@ export const Container = styled.div`
   }
 `;
 
-
+export const Tr = styled.tr`
+color:white;
+`;
+export const Th = styled.th`
+color:white;
+`;
 
 export const Button = styled.button`
   border-radius: 4px;

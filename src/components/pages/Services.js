@@ -7,6 +7,11 @@ import Bowser from './offices/Bowser';
 import Mario from './offices/Mario';
 import DonkeyKong from './offices/DonkeyKong';
 
+/* Bookings --> mit Employeename statt employeeId 
+
+Bookings hochzählen Request --> automatisch 
+*/
+
 
 /*  Ein User kann sich im Browser durch Eingabe von Benutzernamen und
 Kennwort im System anmelden und einen Arbeitsplatz auswählen. Es wird

@@ -5,8 +5,9 @@
     "slider.title":"My table is your table",
     "navbar.home":"Home",
     "navbar.services":"Services",
-    "navbar.products":"Products",
-    "navbar.login":"Sign Up"
-    
+    "navbar.products":"My Bookings",
+    "navbar.login":"Sign Up",
+    "navbar.employeefinder":"Employee Search",
+    "navbar.adminbooking":"Admin Booking"
     
 }

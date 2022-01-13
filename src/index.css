@@ -7,6 +7,14 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+th{
+  color:'white'
+  
+}
+tr{
+  color:'white'
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
@@ -83,6 +91,9 @@ a {
   width: 20px;
   height: 20px;
 }
+
+
+
 
 
 /* Dropdown Menu */

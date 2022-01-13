@@ -51,10 +51,10 @@ function App() {
       <div style={
         { marginTop: '50vh' }}>
       </div>
-{/* 
+
 
       <Slider></Slider>
- */}
+
       <Router>
 
         <Footer />

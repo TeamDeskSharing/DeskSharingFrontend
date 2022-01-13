@@ -5,8 +5,10 @@
     "slider.title":"MI MESA ES TU MESA",
     "navbar.home":"Comenzar",
     "navbar.services":"Servicios",
-    "navbar.products":"Productos",
-    "narvar.login":"Acceso"
+    "navbar.products":"Mi Reservas",
+    "narvar.login":"Acceso",
+    "navbar.employeefinder":"Buscar Colega",
+    "navbar.adminbooking":"Admin Reserva"
     
 
 }
