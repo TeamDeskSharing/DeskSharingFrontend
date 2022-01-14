@@ -84,7 +84,6 @@ function EmployeeList() {
                             <th style={{color:"white"}}>Nachname</th>
                             <th style={{color:"white"}}>Telefonnummer</th>
                             <th style={{color:"white"}}>Email</th>
-                            <th style={{color:"white"}}>Actions</th>
 
                         </tr>
 

@@ -3,21 +3,22 @@ import testfloor from '../../../assets/images/floorplans/Grundrisstest.png'
 
 import React, { Component } from 'react';
 import ApiService from '../../../APIService';
-
-
+import ShowBlockedBookings from './ShowBlockedBookings';
 class DonkeyKong extends Component {
     
 
     constructor(props) {
         super(props)
-
-
+        const current = new Date();
+        //const date = `${current.getFullYear}-${current.getMonth()+1}-${current.getDate}`;
+        const date = `${current.getFullYear()}-${current.getMonth()+1}-${current.getDate()}`;
         this.state = {
            
          
-            timestart:"",
-            timeend:"",
-            status:"schwebend",
+
+            timestart:date+"T00:00"+"",
+            timeend:date+"T00:00"+"",
+            status:"",
             employee:{id:""},
             workplace:{id:""},
            
@@ -29,6 +30,10 @@ class DonkeyKong extends Component {
         this.changeEndtime = this.changeEndtime.bind(this);
 
         this.submitHandler = this.submitHandler.bind(this);
+
+ 
+        console.log(date)
+
 
     }
 
@@ -55,6 +60,7 @@ class DonkeyKong extends Component {
     
       
             
+            
 
     
 
@@ -72,7 +78,11 @@ class DonkeyKong extends Component {
         this.setState({timestart:e.target.value})
     }
     changeEndtime = (e) => {
-        this.setState({timeend:e.target.value})
+
+
+
+        this.setState({timeend: e.target.value})
+
     }
 
     changeDeskId = (e)=>{
@@ -112,7 +122,7 @@ class DonkeyKong extends Component {
     }
 
     render() {
-
+        const current = new Date();
     
         return (
             
@@ -143,17 +153,19 @@ class DonkeyKong extends Component {
        {/* INPUT FIELDS */}
 
        <div className="container">
+       <div>
+                                            <p>Folgende Plätze sind im Büro Donkey Kong geblockt:</p>
+                                            <p>  <ShowBlockedBookings></ShowBlockedBookings></p>
+                                          
+                                        </div>
                         <div className="row">
                             <div className="card col-md-6 offset-md-3 offset-md-3">
-                                {
-                                    
-                                }
+                                
+
                                 <div className="card-body">
-    
+       
                                     <form>
-                                        <div>
-                                            <p>Folgende Plätze sind im Büro Donkey Kong verfügbar:</p>
-                                        </div>
+
                                         <div className="form-group">
                                             <label> Buchung für Platz: </label>
                                             <input type="text" placeholder="Platz im Plan wählen" name="id" className="form-control"
@@ -168,7 +180,9 @@ class DonkeyKong extends Component {
                                         <div className="form-group">
                                             <label> Endzeit: </label>
                                             <input placeholder="Endzeit" name="endtime" className="form-control"
+                                            
                                                 value={this.state.timeend} onChange={this.changeEndtime} />
+       
 
                                         </div>
     
@@ -184,10 +198,15 @@ class DonkeyKong extends Component {
                         </div>
     
                     </div>
-                   
-    
+{/*                     <DatePicker>
+                            {console.log(this.props)}
+
+                </DatePicker>               
+     */}
            </div>
            <br></br>
+
+    
        
     
         </div>
