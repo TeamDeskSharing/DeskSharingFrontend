@@ -1,17 +1,25 @@
 import React from 'react'
 
-function ShowBlockedBookings(officeid) {
+function ShowBlockedBookings(props) {
 
    
 
-    const [eymplees, setEmployees] = React.useState([]);
+    const [blockedBookings, setBlockedBookings] = React.useState([]);
 
-    const url = "http://localhost:8080/api/v1/booking/findBookingsByStatus/akzeptiert";
 
+    function getProps()
+    {
+        let id = props.value;
+        return id;
+    }
+
+
+
+    const urlWP=`http://localhost:8080/api/v1/booking/getBlockedBookingsByOffice/${getProps()}`;
     const token = localStorage.getItem('token')
 
     React.useEffect(() => {
-        fetch(url, {
+        fetch(urlWP, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -21,7 +29,7 @@ function ShowBlockedBookings(officeid) {
 
         })
             .then(res => res.json())
-            .then(eymplees => setEmployees(eymplees))
+            .then(blockedBookings => setBlockedBookings(blockedBookings))
             .catch(err => console.log(err.message));
     }, []);
 
@@ -44,26 +52,24 @@ function ShowBlockedBookings(officeid) {
 
                     <thead>
                         <tr>
-                            <th  style={{color:"white"}}>ID</th>
-                            <th style={{color:"white"}}>Status</th>
-                            <th style={{color:"white"}}>Startzeit</th>
-                            <th style={{color:"white"}}>Endzeit</th>
-                            <th style={{color:"white"}}>Arbeitsplatz</th>
+        
+                            <th >Startzeit</th>
+                            <th >Endzeit</th>
+                            <th >Arbeitsplatz</th>
 
                         </tr>
 
                     </thead>
 
                     <tbody>
-                        {console.log(eymplees)}
-                        {eymplees.map(
+                     
+                        {blockedBookings.map(
                             e =>
                                 <tr key={e.id}>
-                                    <td style={{color:"white"}}>{e.id}</td>
-                                    <td style={{color:"white"}}>{e.status}</td>
-                                    <td style={{color:"white"}}>{e.timestart}</td>
-                                    <td style={{color:"white"}}>{e.timeend}</td>
-                                    <td style={{color:"white"}}>{e.workplace.id}</td>
+                       
+                                    <td >{e.timestart}</td>
+                                    <td >{e.timeend}</td>
+                                    <td >{e.workplace.id}</td>
                                     <td>
 
                                     </td>

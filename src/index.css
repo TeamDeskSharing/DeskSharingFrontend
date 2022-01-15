@@ -7,12 +7,12 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-th{
+.textColorTable{
   color:'white'
   
 }
 tr{
-  color:'white'
+  color:'#dadce1'
 }
 
 code {

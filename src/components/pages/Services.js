@@ -6,6 +6,7 @@ import Cards from '../cards/Cards'
 import Bowser from './offices/Bowser';
 import Mario from './offices/Mario';
 import DonkeyKong from './offices/DonkeyKong';
+import Typed from 'react-typed'
 
 /* Bookings --> mit Employeename statt employeeId 
 
@@ -60,6 +61,14 @@ const Services = () => {
 
 
         <div className="cardsDiv">
+        <h1 style={{ color: 'red' }}>
+                    <Typed className="typed-text"
+                        strings={["Are you ready to take a table?", "Choose your office!"
+                        ]}
+                        typeSpeed={30}
+                        backSpeed={8}
+                    ></Typed>
+                </h1>
           <Cards />
         </div>
 

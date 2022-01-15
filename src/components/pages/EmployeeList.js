@@ -1,4 +1,5 @@
 import React from 'react'
+import ApiService from '../../APIService';
 
 /* POST BOOKING REQUEST */
 /* 
@@ -39,25 +40,12 @@ function EmployeeList() {
 
    
 
-    const [eymplees, setEmployees] = React.useState([]);
+    const [employees, setEmployees] = React.useState([]);
 
-    const url = "http://127.0.0.1:8080/api/v1/employee/getAllEmployees";
-
-    const token = localStorage.getItem('token')
 
     React.useEffect(() => {
-        fetch(url, {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${token}`
 
-            }
-
-        })
-            .then(res => res.json())
-            .then(eymplees => setEmployees(eymplees))
-            .catch(err => console.log(err.message));
+            ApiService.getAllEmployees() .then(employees => setEmployees(employees));
     }, []);
 
 
@@ -69,7 +57,7 @@ function EmployeeList() {
     return (
         <div>
 
-            <h2 className="text-center">Mitarbeiter Liste</h2>
+            <h2 style={{color:"white"}} className="text-center">Mitarbeiter Liste</h2>
             <div className="row">
 
             </div>
@@ -90,13 +78,13 @@ function EmployeeList() {
                     </thead>
 
                     <tbody>
-                        {eymplees.map(
+                        {employees.map(
                             e =>
                                 <tr key={e.id}>
                                     <td style={{color:"white"}}>{e.id}</td>
                                     <td style={{color:"white"}}>{e.firstname}</td>
                                     <td style={{color:"white"}}>{e.lastname}</td>
-                                    <td style={{color:"white"}}>{e.phonenumber}</td>
+                                    <td style={{color:"white"}}>{e.currentphonenumber}</td>
                                     <td style={{color:"white"}}>{e.email}</td>
                                     <td>
 

@@ -43,6 +43,8 @@ function Navbar2() {
 
     window.addEventListener('resize', showButton);
 
+    let username = localStorage.getItem('username')
+
 
     return (
         <>
@@ -52,7 +54,7 @@ function Navbar2() {
                         <NavLogo to='/' onClick={closeMobileMenu}>
                             <img style={{ height: 40, width: 40 }} src={tableIcon} alt="Desksharing Logo" />
 
-                            DESKSHARING APP
+                            DESKSHARING
                             <img style={{ height: 40, width: 40 }} src={tableIcon} alt="Desksharing Logo" />
 
                         </NavLogo>
@@ -78,7 +80,7 @@ function Navbar2() {
                                 </NavLinks>
                             </NavItem>
                             <NavItem>
-                                <NavLinks to='/products' onClick={closeMobileMenu}>
+                                <NavLinks to='/myBookings' onClick={closeMobileMenu}>
                                     <FormattedMessage
                                         id="navbar.products">
 
@@ -94,12 +96,18 @@ function Navbar2() {
                                 </NavLinks>
                             </NavItem>
                             <NavItem>
-                                <NavLinks to='/adminbooking' onClick={closeMobileMenu}>
+                                {
+                                username=="admin" ? 
+
+                                    <NavLinks to='/adminbooking' onClick={closeMobileMenu}>
                                     <FormattedMessage
                                         id="navbar.adminbooking">
 
                                     </FormattedMessage>
-                                </NavLinks>
+                                </NavLinks> : <p></p>
+                                }
+          
+          
                             </NavItem>
                             <NavItemBtn>
                                 {button ? (

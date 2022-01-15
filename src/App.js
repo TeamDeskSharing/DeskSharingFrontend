@@ -5,7 +5,7 @@ import Footer from './components/footer/Footer'
 import Slider from "./components/slideshow/Slider"
 
 import Login from './components/pages/Login.js'
-import products from './components/pages/Products.js'
+import myBookings from './components/pages/MyBookings.js'
 import home from './components/pages/Home.js';
 import Services from './components/pages/Services.js'
 import EmployeeList from './components/pages/EmployeeList';
@@ -39,7 +39,7 @@ function App() {
           <Route exact path='/employeelist' exact component={EmployeeList}></Route>
 
           <Route exact path='/login' exact component={Login} />
-          <Route exact path='/products' exact component={products} />
+          <Route exact path='/myBookings' exact component={myBookings} />
           <Route exact path='/home' exact component={home} />
           <Route exact path='/adminbooking' exact component={AdminBooking}></Route>
 
@@ -49,11 +49,11 @@ function App() {
 
 
       <div style={
-        { marginBottom: '150vh' }}>
+        { marginBottom: '200vh' }}>
       </div>
 
 
-      <Slider></Slider>
+      {/*       <Slider></Slider> */}
 
       <Router>
 

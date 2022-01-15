@@ -1,81 +1,41 @@
 import React, { useState } from 'react'
 import { useHistory } from 'react-router-dom';
 
-
+import ApiService from '../../APIService';
 
 
 function AdminBooking() {
 
 
-    const [sales, setSales] = React.useState([]);
+    const [bookingRequest, setBookingRequest] = React.useState([]);
 
 
 
-    const url = "http://127.0.0.1:8080/api/v1/booking/getAllBookings";
-    const tokenLS = localStorage.getItem('token')
 
     React.useEffect(() => {
-        fetch(url, {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${tokenLS}`
 
-            }
-
-        })
-            .then(res => res.json())
-            .then(sales => setSales(sales))
-            .catch(err => console.log(err.message));
+            ApiService.getAllRequest().then(bookingRequest => setBookingRequest(bookingRequest));
     }, []);
 
 
+   function declineBooking(id){
+        ApiService.declineBooking(id);
+        
+    }
 
     function acceptBooking(id){
-        /*  */
-
-        return fetch(`http://localhost:8080/api/v1/booking/updateAkzeptiert/${id}`, {
-            'method': 'PUT',
-            headers: {
-
-                'Content-Type': 'application/json',
-                'Accept': 'application/json',
-                'Authorization': `Bearer ${tokenLS}`
-            },
-         /*    body: JSON.stringify(body) */
-
-        }).then(resp => console.log(resp.json()))
-
-         
+        ApiService.acceptBooking(id);
     }
-    
-
-
-    function declineBooking(id) {
-        return fetch(`http://localhost:8080/api/v1/booking/updateAbgelehnt/${id}`, {
-            'method': 'PUT',
-            headers: {
-
-                'Content-Type': 'application/json',
-                'Accept': 'application/json',
-                'Authorization': `Bearer ${tokenLS}`
-            },
-         /*    body: JSON.stringify(body) */
-
-        }).then(resp => console.log(resp.json()))
-
-
-
-    }
-
 
   
+
+
 
 
     return (
         <div>
 
-            <h2 className="text-center">Buchungsanfragen Liste</h2>
+            <h2 style={{color:"white"}} className="text-center">Buchungsanfragen Liste</h2>
             <div className="row">
 
             </div>
@@ -97,7 +57,7 @@ function AdminBooking() {
                     </thead>
 
                     <tbody>
-                        {sales.map(
+                        {bookingRequest.map(
                             e =>
                                 <tr key={e.id}>
                                    <td style={{color:"white"}}>{e.id}</td>
@@ -109,7 +69,6 @@ function AdminBooking() {
                                         <button onClick={() => acceptBooking(e.id)} className="btn btn-info">Akzeptieren </button>
 
                                         <button style={{ marginLeft: "10px" }} onClick={() => declineBooking(e.id)} className="btn btn-danger">Ablehnen </button>
-                                        {/* <button style={{ marginLeft: "10px" }} onClick={() => this.viewSales(e.id)} className="btn btn-info">View </button> */}
 
                                     </td>
 

@@ -2,25 +2,6 @@ import React from 'react';
 import './Cards.css';
 import CardItem from './CardItem';
 import styled from 'styled-components'
-
-/* const Div1 = styled.div`
-    padding: 4rem;
-    display: flex;
-  background-color: #101522;
- 
-`;
-const Div2 = styled.div`
-
-    display: flex;
-    flex-flow: column;
-    align-items: center;
-    max-width: 1120px;
-    width: 100%;
-    margin: 0 auto;
-
-  background-color: #101522;
- 
-`; */
 const Div3 = styled.div`
     position: relative;
     width: 100%;
@@ -64,15 +45,16 @@ function Cards() {
           <CardItem
             src='https://sketchfab.com/models/f2992a1ec6454ab5bb5b4a0c09973e24/embed'
             text='Buchen Sie einen Platz in Büro Bowser'
-            label='Bowser'
+            label='Büro Bowser'
             path='/officeBowser'
           />
           <CardItem
             src='https://sketchfab.com/models/24de5497539a4eccb5bb17285d2155bd/embed'
             text='Buchen Sie einen Platz in Büro Mario'
-            label='Mario'
+            label='Büro Mario'
             path='/officeMario'
           />
+
         </ul>
 
 

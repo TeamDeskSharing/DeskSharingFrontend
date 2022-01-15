@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import ApiService from '../../APIService'
 import { useCookies } from 'react-cookie'
-import { useHistory } from 'react-router-dom';
 
 
 
@@ -14,43 +13,14 @@ function Login(props) {
 
 
 
-    let headers = new Headers();
-
-
-
-    headers.append('GET', 'POST', 'OPTIONS');
-
-
-    function getStudent() {
-        
-
-        return fetch(`http://127.0.0.1:8080/api/v1/students/1`, {
-            'method': 'GET',
-            headers: {
-
-                'Content-Type': 'Authorization',
-                'Accept': 'application/json',
-                'Authorization': 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImF1dGhvcml0aWVzIjpbeyJhdXRob3JpdHkiOiJzdHVkZW50OndyaXRlIn0seyJhdXRob3JpdHkiOiJzdHVkZW50OnJlYWQifSx7ImF1dGhvcml0eSI6ImVtcGxveWVlOndyaXRlIn0seyJhdXRob3JpdHkiOiJjb3Vyc2U6cmVhZCJ9LHsiYXV0aG9yaXR5IjoiUk9MRV9BRE1JTiJ9LHsiYXV0aG9yaXR5IjoiZW1wbG95ZWU6cmVhZCJ9LHsiYXV0aG9yaXR5IjoiY291cnNlOndyaXRlIn1dLCJpYXQiOjE2NDA5MDk4ODYsImV4cCI6MTY0MTc2OTIwMH0.btkHF9MNq2wAxdvYcbzs9D4Or2hNDhfCfHMJPuOmMXsi4i3_ZRVU98KttYJMJSC1SZ9OM8syqvQ6nV6BxHEg9g'
-
-            },
-            // body:JSON.stringify(body)
-
-        }).then(resp => resp.json())
-            .then(resp => console.log(resp));
-
-
-    }
-
-
+ 
 
 
 
     const loginBtn = () => {
         ApiService.loginUser({ username, password })
-            //.then(resp => console.log(resp))
-
-
-            .then(resp => setToken('mytoken', resp.token))
+    
+            .then(resp => setToken('mytoken', resp.token)) //cookie token verifizierung
             .catch(error => console.log(error))
 
     }
@@ -61,6 +31,7 @@ function Login(props) {
 
     }
 
+    /* Register User -- NOT IMPLEMENTED YET */
     /*         const handleSubmit=(e)=>{
                 e.preventDefault();
                 console.log(username)
@@ -85,16 +56,7 @@ function Login(props) {
             <br></br>
             <div className="mb-3"></div>
 
-            {/*         {    <form onSubmit={handleSubmit}>
-            <input type="text" placehoder="username" value={username} onChange={(e)=>setUsername(e.target.value)}></input>
-            <input type="text" placehoder="password" value={password} onChange={(e)=>setUsername(e.target.value)}></input>
-
-            <input type="submit" value="ok"></input>
-            <button>send</button>
-            </form>
-}
-        */}
-
+      
 
             <label htmlFor="username" className="form-label"></label>
 
@@ -119,7 +81,7 @@ function Login(props) {
                     : <h5>If You Have Account, Please <button className="btn btn-primary" onClick={() => setLogin(true)} >Login</button>Here</h5>
                 }
 
-                <button onClick={getStudent}>getStudentTest</button>
+              
 
             </div>
 
