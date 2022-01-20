@@ -122,6 +122,22 @@ export default class ApiService {
             .catch(err => console.log(err.message));
     }
 
+    static getEmployeeByUsername(name){
+        const url = `http://127.0.0.1:8080/api/v1/employee/findEmployeeByUsername/${name}`;
+        const tokenLS = localStorage.getItem('token')
+
+
+        return fetch(url, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${tokenLS}`
+
+            }
+
+        })
+    }
+
 
 
 

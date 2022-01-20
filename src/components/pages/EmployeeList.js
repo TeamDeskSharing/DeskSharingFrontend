@@ -1,39 +1,7 @@
 import React from 'react'
 import ApiService from '../../APIService';
 
-/* POST BOOKING REQUEST */
-/* 
-• Das System unterscheidet die Benutzerrollen Admin und User.
-• Ein User kann sich im Browser durch Eingabe von Benutzernamen und
-Kennwort im System anmelden und einen Arbeitsplatz auswählen. Es wird
-ihm über den Browser ein Grundriss über die Gebäude, die vorhandenen
-Büros und die buchbaren Arbeitsplätze angezeigt. Durch Anklicken kann
-er einen Arbeitsplatz auswählen und seinen Buchungswunsch
-hinterlegen. --> POST BOOKING REQUEST, GET WORKSPACE BY STATUS
 
-• Der Administrator kann nach erfolgreicher Buchungsanfrage jede
-einzelne Buchungsanfrage bestätigen oder ablehnen. In beiden Fällen
-wird an die für den Anfrager hinterlegte Mail-Adresse eine Bestätigungsoder
-Absage-Mail verschickt. --> PUT BOOKING REQUEST + POST MAIL 
-
-
-• Ein User kann sich im System alle vom ihm erstellten Buchungsanfragen
-ansehen lassen, ebenfalls kann er sich tabellarisch die bestätigten sowie
-die abgelaufenen Buchungen darstellen lassen. -->  GETBOOKING BY STATUS , GET BOOKING BY NAME
-• Sollte ein User seinen Arbeitsplatz vor Ablauf seiner Buchungszeit seinen
-Arbeitsplatz vorzeitig verlassen, muss er sich im System anmelden und
-den Arbeitsplatz als frei markieren, sodass dieser Arbeitsplatz im System
-direkt wieder als buchbar erscheint. --> PUT BOOKING REQUEST, PUT WORKING SPACE 
-• Für eine telefonische Kontaktaufnahme soll das System die gerade für
-einen Mitarbeiter gültige und mögliche Telefonnummer öffentlich ohne
-Authentifizierung abrufbar sein. Befindet sich ein Mitarbeiter im
-HomeOffice, so wird bei einer Suche die Telefonnummer des im System
-bei den Stammdaten des Mitarbeiters hinterlegte Rufnummer angezeigt.
-Arbeitet der gleiche Mitarbeiter jedoch an einem von ihm gebuchten
-Arbeitsplatz im U‘g, so wird bei der Suche die Telefonnummer des
-jeweiligen Arbeitsplatzes angezeigt. 
-FIND EMPLOYEE 
-*/
 
 
 function EmployeeList() {
@@ -42,6 +10,7 @@ function EmployeeList() {
 
     const [employees, setEmployees] = React.useState([]);
 
+    const [name, setName] = React.useState(" ");
 
     React.useEffect(() => {
 
@@ -51,11 +20,26 @@ function EmployeeList() {
 
 
 
+    const getEmployeeByUsername = event => {
+        setName(event.target.value);  };
+    
+      const printUsername = () => {
 
+
+        ApiService.getEmployeeByUsername(name)
+            .then(res => res.json())
+            .then(res => setName(res))
+            .catch(err => console.log(err.message));
+
+    };
 
 
     return (
         <div>
+
+
+      <input onChange={getEmployeeByUsername} placeholder="Enter name"/>      <button onClick={printUsername}>Mitarbeiter suchen</button>
+      <h1 style={{color:"white"}}>Mitarbeiter mit Username: {name.username} hat Telefonnummer: {name.phonenumber}</h1>
 
             <h2 style={{color:"white"}} className="text-center">Mitarbeiter Liste</h2>
             <div className="row">
@@ -68,6 +52,8 @@ function EmployeeList() {
                     <thead>
                         <tr>
                             <th  style={{color:"white"}}>ID</th>
+                            <th style={{color:"white"}}>Username</th>
+
                             <th style={{color:"white"}}>Vorname</th>
                             <th style={{color:"white"}}>Nachname</th>
                             <th style={{color:"white"}}>Telefonnummer</th>
@@ -82,6 +68,8 @@ function EmployeeList() {
                             e =>
                                 <tr key={e.id}>
                                     <td style={{color:"white"}}>{e.id}</td>
+                                    <td style={{color:"white"}}>{e.username}</td>
+
                                     <td style={{color:"white"}}>{e.firstname}</td>
                                     <td style={{color:"white"}}>{e.lastname}</td>
                                     <td style={{color:"white"}}>{e.currentphonenumber}</td>
