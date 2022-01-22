@@ -15,6 +15,7 @@ function Slider() {
   ];
 
 
+
   return (
     <div className="slide-container">
       <Slide>

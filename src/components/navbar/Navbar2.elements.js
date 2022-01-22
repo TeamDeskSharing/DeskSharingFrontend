@@ -40,7 +40,7 @@ export const IconPlay = styled(tableIcon)`
 
 export const MobileIcon = styled.div`
   display: none;
-  @media screen and (max-width: 960px) {
+  @media screen and (max-width: 1224px) {
     display: block;
     position: absolute;
     top: 0;
@@ -56,7 +56,7 @@ export const NavMenu = styled.ul`
   align-items: center;
   list-style: none;
   text-align: center;
-  @media screen and (max-width: 960px) {
+  @media screen and (max-width: 1224px) {
     display: flex;
     flex-direction: column;
     width: 90%;
@@ -77,7 +77,7 @@ export const NavItem = styled.li`
   &:hover {
     border-bottom: 2px solid #4b59f7;
   }
-  @media screen and (max-width: 960px) {
+  @media screen and (max-width: 1224px) {
     width: 100%;
     &:hover {
       border: none;
@@ -88,7 +88,7 @@ export const NavItem = styled.li`
 `;
 
 export const NavItemBtn = styled.li`
-  @media screen and (max-width: 960px) {
+  @media screen and (max-width: 1224px) {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -104,7 +104,7 @@ export const NavLinks = styled(Link)`
   text-decoration: none;
   padding: 0.5rem 1rem;
   height: 100%;
-  @media screen and (max-width: 960px) {
+  @media screen and (max-width: 1224px) {
     text-align: center;
     padding: 2rem;
     width: 100%;

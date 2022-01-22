@@ -10,8 +10,7 @@ import computer from '../../assets/models/landingpage/computer.glb'
 import earthBump from '../../assets/images/landingpage/earthbump1k.jpg'
 import earthSpec from '../../assets/images/landingpage/earthspec1k.jpg'
 
-import Typed from 'react-typed'
-import './Home.css';
+
 
 import styled from 'styled-components';
 
@@ -91,7 +90,8 @@ class Home extends Component {
             const controls = new OrbitControls(camera, document.querySelector("#c"));
             controls.target.set(0, 0, 0);
             controls.enableDamping = true;
-
+           controls.enableRotate = false;
+           controls.enableZoom = false;
             controls.update();
 
 
@@ -256,7 +256,7 @@ class Home extends Component {
 
             const tween1 = new TWEEN.Tween({ x: 0, y: 0, z: 200 }).to({
                 x: -
-                    0, y: 0, z: -90
+                    0, y: 0, z: -94
             }, 2000).onUpdate(function (object) {
                 planet.position.set(object.x, object.y, object.z);
             })
@@ -326,7 +326,11 @@ class Home extends Component {
            
 
 
+
+
                 <div>
+
+
                 <h1 style={{ color: 'red' }}>
                     <FormattedMessage
                         id="app.content"
@@ -344,9 +348,18 @@ class Home extends Component {
 
                     <p style={{ color: 'green' }}>Window size: {this.state.width} x {this.state.height} </p>
                     <p style={{ color: 'red' }}>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
 
                     </p>
+                    <p style={{ color: 'red'}}>sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                    <p style={{ color: 'red'}}> Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </p>
+                   <p style={{ color: 'red'}}>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+
+<p style={{ color: 'red'}}> Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
+
+
+
+
 
 
 
@@ -356,7 +369,7 @@ class Home extends Component {
 
 
 
-{/* 
+
                 <div id='divR'
 
                     style={{
@@ -364,26 +377,21 @@ class Home extends Component {
                         justifyContent: 'right',
                         alignItems: 'right',
                       
-                        height: '600px',
-                                                width: '600px'
+                        height: '900px',
+                        width: '900px'
 
                     }}
                 >
                     <canvas id='c'></canvas>
-                </div> */}
-
-                <Div2 id='divR' className='cards__item '>
-                <canvas id='c'></canvas>
-
-                </Div2>
-
-               
+                </div>
+     
 
 
 
 
+<div>
 
-
+</div>
 
             </div>
 

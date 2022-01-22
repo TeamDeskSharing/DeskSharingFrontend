@@ -1,7 +1,7 @@
 import React from 'react'
 import ApiService from '../../APIService';
 
-
+import ParticleTest from '../particleAnimation/ParticleTest';
 
 
 function EmployeeList() {
@@ -35,7 +35,8 @@ function EmployeeList() {
 
 
     return (
-        <div>
+        <div style={{       backgroundColor: "#101522"}}>
+
 
 
       <input onChange={getEmployeeByUsername} placeholder="Enter name"/>      <button onClick={printUsername}>Mitarbeiter suchen</button>
@@ -46,17 +47,17 @@ function EmployeeList() {
 
             </div>
 
-            <div className="row">
+            <div style={{       backgroundColor: "#101522"}}className="row">
                 <table className="table table-striped table-bordered">
+               
 
                     <thead>
                         <tr>
                             <th  style={{color:"white"}}>ID</th>
-                            <th style={{color:"white"}}>Username</th>
+                            <th style={{color:"white"}}>User</th>
 
-                            <th style={{color:"white"}}>Vorname</th>
-                            <th style={{color:"white"}}>Nachname</th>
-                            <th style={{color:"white"}}>Telefonnummer</th>
+                            <th style={{color:"white"}}>Name</th>
+                            <th style={{color:"white"}}>Telefon</th>
                             <th style={{color:"white"}}>Email</th>
 
                         </tr>
@@ -70,8 +71,8 @@ function EmployeeList() {
                                     <td style={{color:"white"}}>{e.id}</td>
                                     <td style={{color:"white"}}>{e.username}</td>
 
-                                    <td style={{color:"white"}}>{e.firstname}</td>
-                                    <td style={{color:"white"}}>{e.lastname}</td>
+                                
+                                    <td style={{color:"white"}}>{e.lastname} {e.firstname}</td>
                                     <td style={{color:"white"}}>{e.currentphonenumber}</td>
                                     <td style={{color:"white"}}>{e.email}</td>
                                     <td>

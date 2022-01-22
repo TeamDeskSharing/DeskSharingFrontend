@@ -1,6 +1,6 @@
 import React from 'react'
 import ApiService from '../../APIService';
-
+import ParticleTest from '../particleAnimation/ParticleTest';
 function MyBookings() {
 
 
@@ -12,39 +12,35 @@ function MyBookings() {
 
         ApiService.getBookingsByUsername()
             .then(res => res.json())
+            
             .then(myBookings => setMyBookings(myBookings))
             .catch(err => console.log(err.message));
     }, []);
 
 
     function declineBooking(id) {
-
-        ApiService.declineBooking(id).then(resp => console.log(resp.json()))
-
-
-
+        ApiService.declineBooking(id);
     }
 
 
     return (
         <div>
 
-            <h2 style={{ color: "white" }} className="text-center">Buchungsanfragen Liste</h2>
+            <h2 style={{ color: "white" }} className="text-center">Meine Buchungen</h2>
             <div className="row">
 
             </div>
 
-            <div className="row">
+            <div style={{       backgroundColor: "#101522"}}className="row">
                 <table className="table table-striped table-bordered">
 
                     <thead>
                         <tr>
                             <th style={{ color: "white" }}>ID</th>
-                            <th style={{ color: "white" }}>Mitarbeiter</th>
+                            <th style={{ color: "white" }}>Name</th>
                             <th style={{ color: "white" }}>Startzeit</th>
                             <th style={{ color: "white" }}>Endzeit</th>
                             <th style={{ color: "white" }}>Status</th>
-                            <th style={{ color: "white" }}>Actions</th>
 
                         </tr>
 
@@ -56,31 +52,36 @@ function MyBookings() {
                                 <tr key={e.id}>
                                     <td style={{ color: "white" }}>{e.id}</td>
                                     <td style={{ color: "white" }}>{e.employee.firstname}</td>
-                                    <td style={{ color: "white" }}>{e.timestart}</td>
-                                    <td style={{ color: "white" }}>{e.timeend}</td>
-                                    <td style={{ color: "white" }}>{e.status}</td>
-
+                                    <td style={{color:"white"}}>{e.timestart.substr(0,10)} {e.timestart.charAt(11)+e.timestart.charAt(12)+e.timestart.charAt(13)+e.timestart.charAt(14)+e.timestart.charAt(15)}</td>
+                                    <td style={{color:"white"}}>{e.timeend.substr(0,10)} {e.timeend.charAt(11)+e.timeend.charAt(12)+e.timeend.charAt(13)+e.timeend.charAt(14)+e.timeend.charAt(15)}</td>
+{/*                                     <td style={{ color: "white" }}>{e.status}</td>
+ */}
                                     <td>
 
 
 
                                         {e.status == "akzeptiert" ? <button style={{ marginLeft: "10px" }} onClick={() => declineBooking(e.id)} className="btn btn-danger">Auschecken </button> :
-                                            <p></p>}
+                                            <p style={{color:'white'}}>{e.status}</p>}
 
                                     </td>
 
 
                                 </tr>
                         )}
+             
+
 
                     </tbody>
 
 
                 </table>
 
+                
+
 
 
             </div>
+           
 
 
 

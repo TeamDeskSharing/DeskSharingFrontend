@@ -139,10 +139,11 @@ class Bowser extends Component {
 
 
                 <div style={{
-                    textAlign: 'center',
+                
                     display: 'flex',
-                    flexDirection:'row',
+                    flexDirection:'column',
                     justifyContent: 'center',
+                    textAlign: 'center',
                     alignItems: 'center',
                 }}>
 
@@ -166,7 +167,14 @@ class Bowser extends Component {
 
                     {/* INPUT FIELDS */}
 
-                    <div className="container">
+                    <div style={{
+                
+                display: 'flex',
+                flexDirection:'column',
+                justifyContent: 'center',
+                textAlign: 'center',
+                alignItems: 'center',
+            }} className="container">
                       
                     <div style={{ width: '1400px' }} className="row">
                             <div className="card col-md-6 offset-md-3 offset-md-3">

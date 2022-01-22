@@ -15,7 +15,7 @@ function ShowBlockedBookings(props) {
 
 
 
-    const urlWP=`http://localhost:8080/api/v1/booking/getBlockedBookingsByOffice/${getProps()}`;
+    const urlWP=`http://localhost:8080/api/v1/booking/e1/getBlockedBookingsByOffice/${getProps()}`;
     const token = localStorage.getItem('token')
 
     React.useEffect(() => {
@@ -42,20 +42,27 @@ function ShowBlockedBookings(props) {
     return (
         <div>
 
-            <h2 className="text-center">Geblockte Arbeitsplätze</h2>
-            <div className="row">
+            <h2 style={{color:"white"}} className="text-center">Geblockte Arbeitsplätze</h2>
+
+
+            <div style={{width:100}} className="row">
 
             </div>
 
-            <div className="row">
-                <table className="table table-striped table-bordered">
+            <div style={{  resize:'both',
+    overflow:'auto',
+    justifyContent: 'center',
+    alignItems: 'center',
+    
+    }} className="row">
+                <table style={{width:100}}className="table table-striped table-bordered">
 
                     <thead>
                         <tr>
         
-                            <th >Startzeit</th>
-                            <th >Endzeit</th>
-                            <th >Arbeitsplatz</th>
+                            <th style={{color:"white"}}>Startzeit</th>
+                            <th style={{color:"white"}}>Endzeit</th>
+                            <th style={{color:"white"}}>Arbeitsplatz</th>
 
                         </tr>
 
@@ -67,12 +74,12 @@ function ShowBlockedBookings(props) {
                             e =>
                                 <tr key={e.id}>
                        
-                                    <td >{e.timestart}</td>
-                                    <td >{e.timeend}</td>
-                                    <td >{e.workplace.id}</td>
-                                    <td>
+                                    <td style={{color:"white"}}>{e.timestart}</td>
+                                    <td style={{color:"white"}}>{e.timeend}</td>
+                                    <td style={{color:"white"}}>{e.workplace.id}</td>
+                                 
 
-                                    </td>
+                                 
 
 
                                 </tr>

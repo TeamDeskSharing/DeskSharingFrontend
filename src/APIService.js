@@ -49,7 +49,7 @@ export default class ApiService {
     static declineBooking(id) {
         let tokenLS = localStorage.getItem('token')
 
-        return fetch(`http://localhost:8080/api/v1/booking/updateAbgelehnt/${id}`, {
+        return fetch(`http://localhost:8080/api/v1/booking/e1/updateAbgelehnt/${id}`, {
             'method': 'PUT',
             headers: {
 
@@ -63,6 +63,26 @@ export default class ApiService {
 
 
     }
+
+
+    static leaveWorkspace(id) {
+        let tokenLS = localStorage.getItem('token')
+
+        return fetch(`http://localhost:8080/api/v1/booking/leaveWorkspace/${id}`, {
+            'method': 'PUT',
+            headers: {
+
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+                'Authorization': `Bearer ${tokenLS}`
+            },
+
+        }).then(resp => console.log(resp.json()))
+
+
+
+    }
+
 
 
     static acceptBooking(id) {
@@ -108,12 +128,13 @@ export default class ApiService {
 
     static getAllEmployees() {
         const urlphone = "http://127.0.0.1:8080/api/v1/booking/getCurrentPhoneNumberofEmployees"
-        const token = localStorage.getItem('token')
+        /* const token = localStorage.getItem('token') */
+       // const token = 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJlbXBsb3llZSIsImF1dGhvcml0aWVzIjpbeyJhdXRob3JpdHkiOiJzdHVkZW50OndyaXRlIn0seyJhdXRob3JpdHkiOiJzdHVkZW50OnJlYWQifSx7ImF1dGhvcml0eSI6ImVtcGxveWVlOndyaXRlIn0seyJhdXRob3JpdHkiOiJjb3Vyc2U6cmVhZCJ9LHsiYXV0aG9yaXR5IjoiZW1wbG95ZWU6cmVhZCJ9LHsiYXV0aG9yaXR5IjoiY291cnNlOndyaXRlIn0seyJhdXRob3JpdHkiOiJST0xFX0VNUExPWUVFIn1dLCJpYXQiOjE2NDI4MDk0MDAsImV4cCI6MTY0MzY3MDAwMH0.XU2Rlq6EbdsccVm17wWRuDNZEafNC3n6g8f2SNzhPMzlgruIEL9ZZFIePtBNQvJRtvWaNbODe4N8VI1jjqBVvQ'
         return fetch(urlphone, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': `Bearer ${token}`
+               // 'Authorization': `Bearer ${token}`
 
             }
 
@@ -147,7 +168,7 @@ export default class ApiService {
         let tokenLS = localStorage.getItem('token')
 
 
-        return fetch(`http://127.0.0.1:8080/api/v1/booking/saveBookingWithIDs/`, {
+        return fetch(`http://127.0.0.1:8080/api/v1/booking/e1/saveBookingWithIDs/`, {
             'method': 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -167,8 +188,9 @@ export default class ApiService {
     static findEmployeeByUsername() {
         const tokenLS = localStorage.getItem('token');
         const username = localStorage.getItem('username');
+        console.log(username);
 
-        return fetch(`http://localhost:8080/api/v1/employee/findEmployeeByUsername/${username}`, {
+        return fetch(`http://localhost:8080/api/v1/employee/e1/findEmployeeByUsername/${username}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -201,9 +223,13 @@ export default class ApiService {
     /* MY BOOKINGS */
     static getBookingsByUsername() {
 
-        let token = localStorage.getItem("token")
+        const token = localStorage.getItem('token')
+        const username = localStorage.getItem("username")
+        
+        console.log(token)
+        console.log(username)
 
-        const url = 'http://127.0.0.1:8080/api/v1/booking/findBookingsByUsername/admin'
+        const url = `http://127.0.0.1:8080/api/v1/booking/e1/findBookingsByUsername/${username}`
         return fetch(url, {
             method: 'GET',
             headers: {
