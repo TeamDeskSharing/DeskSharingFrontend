@@ -166,7 +166,7 @@ class DonkeyKong extends Component {
 
 <area shape="circle" coords="50,550,50" alt="Platz1"  onClick={this.getWorkingPlace}></area>
 <area shape="circle" coords="230,550,50" alt="Platz2" onClick={this.getWorkingPlace2}></area>
-<area shape="circle" coords="410,550,50" alt="Platz3" onClick={this.getWorkingPlace3}></area>^
+<area shape="circle" coords="410,550,50" alt="Platz3" onClick={this.getWorkingPlace3}></area>
 <area shape="circle" coords="90,100,50" alt="Platz4" onClick={this.getWorkingPlace4}></area>
 
 
