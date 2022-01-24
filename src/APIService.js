@@ -7,9 +7,11 @@ export default class ApiService {
 
     /* 131.173.88.173:443 */
 
+    /* 37.5.253.38 */
+    
     static loginUser(body) {
 
-        return axios.post('http://localhost:8080/login', body)
+        return axios.post('http://131.173.88.173:443/login', body)
             .then(resp => {
                 // console.log(resp)
                 localStorage.setItem("token", resp.data)
@@ -52,7 +54,7 @@ export default class ApiService {
     static declineBooking(id) {
         let tokenLS = localStorage.getItem('token')
 
-        return fetch(`http://localhost:8080/api/v1/booking/e1/updateAbgelehnt/${id}`, {
+        return fetch(`http://131.173.88.173:443/api/v1/booking/e1/updateAbgelehnt/${id}`, {
             'method': 'PUT',
             headers: {
 
@@ -71,7 +73,7 @@ export default class ApiService {
     static leaveWorkspace(id) {
         let tokenLS = localStorage.getItem('token')
 
-        return fetch(`http://localhost:8080/api/v1/booking/leaveWorkspace/${id}`, {
+        return fetch(`http://131.173.88.173:443/api/v1/booking/leaveWorkspace/${id}`, {
             'method': 'PUT',
             headers: {
 
@@ -96,7 +98,7 @@ export default class ApiService {
 
         let tokenLS = localStorage.getItem('token')
 
-        return fetch(`http://localhost:8080/api/v1/booking/updateAkzeptiert/${id}`, {
+        return fetch(`http://131.173.88.173:443/api/v1/booking/updateAkzeptiert/${id}`, {
             'method': 'PUT',
             headers: {
 
@@ -112,7 +114,7 @@ export default class ApiService {
 
     static getAllRequest() {
 
-        const url = "http://localhost:8080/api/v1/booking/getAllBookings";
+        const url = "http://131.173.88.173:443/api/v1/booking/getAllBookings";
         const tokenLS = localStorage.getItem('token')
 
 
@@ -133,7 +135,7 @@ export default class ApiService {
     /* EMPLOYEE API CALLS */
 
     static getAllEmployees() {
-        const urlphone = "http://localhost:8080/api/v1/booking/getCurrentPhoneNumberofEmployees"
+        const urlphone = "http://131.173.88.173:443/api/v1/booking/getCurrentPhoneNumberofEmployees"
 
         return fetch(urlphone, {
             method: 'GET',
@@ -152,7 +154,7 @@ export default class ApiService {
 
         // const name = localStorage.getItem('username');
 
-        const url = `http://localhost:8080/api/v1/employee/e1/findEmployeeByUsername/${name}`;
+        const url = `http://131.173.88.173:443/api/v1/employee/e1/findEmployeeByUsername/${name}`;
 
         const tokenLS = localStorage.getItem('token')
 
@@ -172,7 +174,7 @@ export default class ApiService {
 
         // const name = localStorage.getItem('username');
 
-        const url = `http://localhost:8080/api/v1/employee/findEmployeeByUsername/${name}`;
+        const url = `http://131.173.88.173:443/api/v1/employee/findEmployeeByUsername/${name}`;
 
         const tokenLS = localStorage.getItem('token')
 
@@ -198,7 +200,7 @@ export default class ApiService {
         let tokenLS = localStorage.getItem('token')
 
 
-        return fetch(`http://localhost:8080/api/v1/booking/e1/saveBookingWithIDs/`, {
+        return fetch(`http://131.173.88.173:443/api/v1/booking/e1/saveBookingWithIDs/`, {
             'method': 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -220,7 +222,7 @@ export default class ApiService {
         const username = localStorage.getItem('username');
         console.log(username);
 
-        return fetch(`http://localhost:8080/api/v1/employee/e1/findEmployeeByUsername/${username}`, {
+        return fetch(`http://131.173.88.173:443/api/v1/employee/e1/findEmployeeByUsername/${username}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -235,7 +237,7 @@ export default class ApiService {
 
 
     static getBlockedBookingsByOffice(id) {
-        const url = `http://localhost:8080/api/v1/booking/getCurrentTakenWorksplacesByOffice/${id}`;
+        const url = `http://131.173.88.173:443/api/v1/booking/getCurrentTakenWorksplacesByOffice/${id}`;
         const token = localStorage.getItem('token')
 
 
@@ -260,7 +262,7 @@ export default class ApiService {
         console.log(token)
         console.log(username)
 
-        const url = `http://localhost:8080/api/v1/booking/e1/findBookingsByUsername/${username}`
+        const url = `http://131.173.88.173:443/api/v1/booking/e1/findBookingsByUsername/${username}`
         return fetch(url, {
             method: 'GET',
             headers: {

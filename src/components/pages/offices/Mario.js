@@ -1,5 +1,8 @@
 import testfloor from '../../../assets/images/floorplans/floorplan2.jpeg'
-
+import mario from '../../../assets/models/landingpage/mario.glb'
+import * as THREE from 'three';
+import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 
 import React, { Component } from 'react';
 import ApiService from '../../../APIService';
@@ -57,6 +60,102 @@ class Mario extends Component {
 
         const handler = e => this.setState({ matches: e.matches });
         window.matchMedia("(min-width: 768px)").addEventListener('change', handler);
+
+
+
+
+        /* MODEL */
+
+        var camera, scene, renderer;
+
+
+
+        init();
+        animate();
+
+        function init() {
+
+            //erzeugen eines 3js objektes
+            renderer = new THREE.WebGLRenderer({ canvas: document.querySelector("#c"), antialias: true, alpha: true });
+            renderer.shadowMap.enabled = true;
+            renderer.shadowMap.type = THREE.PCFShadowMap;
+            renderer.setPixelRatio(window.devicePixelRatio);
+            const canvasContainer = document.querySelector('#divR');
+            renderer.setSize(canvasContainer.offsetWidth, canvasContainer.offsetHeight);
+
+
+            let aspect = canvasContainer.offsetWidth / canvasContainer.offsetHeight
+            camera = new THREE.PerspectiveCamera(45, aspect, 0.1, 1500);
+            camera.position.z = -105;
+
+            scene = new THREE.Scene();
+
+
+            const controls = new OrbitControls(camera, document.querySelector("#c"));
+            controls.target.set(0, 0, 0);
+            controls.enableDamping = true;
+            controls.enableRotate = false;
+            controls.enableZoom = true;
+            controls.update();
+
+
+
+            const GLTFloader = new GLTFLoader();
+            let obj = null;
+
+            GLTFloader.setCrossOrigin("true");
+
+
+            GLTFloader.load(mario, function (glb) {
+
+                obj = glb.scene;
+
+
+                glb.scene.rotation.z = 0;
+                glb.scene.rotation.y = 3;
+                glb.scene.position.y = -25;
+
+                scene.add(glb.scene);
+
+            });
+
+
+
+            var light = new THREE.DirectionalLight(0xffffff, 2);
+            light.position.set(0, 1, -250).normalize();
+            light.castShadow = true;
+
+            scene.add(light);
+
+
+        }
+
+
+
+
+        function resize() {
+            var width = renderer.domElement.clientWidth;
+            var height = renderer.domElement.clientHeight;
+            renderer.setSize(width, height, false);
+            camera.aspect = width / height;
+            camera.updateProjectionMatrix();
+        }
+
+
+
+        function animate() {
+            resize();
+            renderer.render(scene, camera);
+            renderer.clearDepth();
+            camera.layers.set(0);
+            camera.rotation.z += 0.005;
+            requestAnimationFrame(animate);
+        }
+
+
+
+        window.addEventListener('resize', this.updateDimensions);
+
 
 
 
@@ -139,11 +238,29 @@ class Mario extends Component {
                 backgroundColor: "#101522",
                 alignItems: 'center',
                 justifyContent: 'center',
+                display: 'flex',
+                flexDirection: 'column'
 
 
             }}            >
                 <h1 style={{ color: "white" }} >Willkommen im Büro Mario</h1>
 
+                <div id='divR'
+
+                    style={{
+                        display: 'flex',
+                        justifyContent: 'center',
+                        alignItems: 'center',
+
+                        height: '300px',
+                        width: '300px'
+
+                    }}
+                >
+
+
+                    <canvas id='c'></canvas>
+                </div>
 
                 <div >
                     <p>  <ShowBlockedBookings value={2}></ShowBlockedBookings></p>

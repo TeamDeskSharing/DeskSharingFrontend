@@ -14,7 +14,7 @@ function ShowBlockedBookings(props) {
 
 
 
-    const urlWP = `http://localhost:8080/api/v1/booking/e1/getBlockedBookingsByOffice/${getProps()}`;
+    const urlWP = `http://131.173.88.173:443/api/v1/booking/e1/getBlockedBookingsByOffice/${getProps()}`;
     const token = localStorage.getItem('token')
 
     React.useEffect(() => {

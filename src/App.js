@@ -77,7 +77,7 @@ function App() {
       {
         width > 1200 ? (<div style={
           {
-            marginBottom: '100vh',
+            marginBottom: '120vh',
             backgroundColor: "#101522"
           }}>
 
