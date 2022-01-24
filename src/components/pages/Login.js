@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import ApiService from '../../APIService'
 import { useCookies } from 'react-cookie'
 
 
 
 
-function Login(props) {
+function Login() {
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
     const [token, setToken] = useCookies(['mytoken'])
@@ -13,13 +13,13 @@ function Login(props) {
 
 
 
- 
+
 
 
 
     const loginBtn = () => {
         ApiService.loginUser({ username, password })
-    
+
             .then(resp => setToken('mytoken', resp.token)) //cookie token verifizierung
             .catch(error => console.log(error))
 
@@ -31,32 +31,18 @@ function Login(props) {
 
     }
 
-    /* Register User -- NOT IMPLEMENTED YET */
-    /*         const handleSubmit=(e)=>{
-                e.preventDefault();
-                console.log(username)
-            }
-    
-           const handleInputEvent=(event)=>{
-                console.log(event.target.username)
-                console.log(event.target.value)
-                this.setUsername(
-                   { [event.target.username]:event.target.vaue}
-                )
-            }
-    
-     */
+
 
     return (
         <div className="App">
             <br></br>
             <br></br>
-            {isLogin ? <h1>Please Login </h1> : <h1>Please Register </h1>}
+            {isLogin ? <h1 style={{ color: 'white' }}>Please Login </h1> : <h1 style={{ color: 'white' }}>Please Register </h1>}
             <br></br>
             <br></br>
             <div className="mb-3"></div>
 
-      
+
 
             <label htmlFor="username" className="form-label"></label>
 
@@ -76,12 +62,12 @@ function Login(props) {
 
             <div className="mb-3">
                 <br />
-                {isLogin ? <h5>If You Don't Have Account, Please <button className="btn btn-primary" onClick={() => setLogin(false)} >Register</button>Here</h5>
+                {isLogin ? <h5 style={{ color: 'white' }}>If You Don't Have Account, Please <button className="btn btn-primary" onClick={() => setLogin(false)} >Register</button>Here</h5>
 
-                    : <h5>If You Have Account, Please <button className="btn btn-primary" onClick={() => setLogin(true)} >Login</button>Here</h5>
+                    : <h5 style={{ color: 'white' }}>If You Have Account, Please <button className="btn btn-primary" onClick={() => setLogin(true)} >Login</button>Here</h5>
                 }
 
-              
+                <h1 style={{ color: 'red' }}>Your loged in as: {localStorage.getItem('username')}</h1>
 
             </div>
 

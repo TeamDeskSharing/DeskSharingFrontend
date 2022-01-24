@@ -29,6 +29,7 @@ import {
 
 
 } from './Footer.elements';
+import tableIcon from "../navbar/icon.png"
 
 function Footer() {
   return (
@@ -81,10 +82,13 @@ function Footer() {
       <SocialMedia>
         <SocialMediaWrap>
           <SocialLogo to='/'>
-            <SocialIcon />
-            ULTRA
+
+            <img style={{ height: 40, width: 40 }} src={tableIcon} alt="Desksharing Logo" />
+            DESKSHARING
+            <img style={{ height: 40, width: 40 }} src={tableIcon} alt="Desksharing Logo" />
+
           </SocialLogo>
-          <WebsiteRights>ULTRA © 2020</WebsiteRights>
+          <WebsiteRights>DESKSHARING © 2022</WebsiteRights>
           <SocialIcons>
             <SocialIconLink href='/' target='_blank' aria-label='Facebook'>
               <FaFacebook />
@@ -93,9 +97,7 @@ function Footer() {
               <FaInstagram />
             </SocialIconLink>
             <SocialIconLink
-              href={
-                '//www.youtube.com/channel/UCsKsymTY_4BYR-wytLjex7A?view_as=subscriber'
-              }
+
               rel='noopener noreferrer'
               target='_blank'
               aria-label='Youtube'

@@ -24,9 +24,11 @@ class Mario extends Component {
             employee: { id: "" },
             workplace: { id: "" },
 
-            officeid:2,
+            officeid: 2,
 
-            blockedbookings:[]
+            blockedbookings: [],
+            matches: window.matchMedia("(min-width: 768px)").matches,
+            errorMessage: ''
 
 
         }
@@ -51,10 +53,12 @@ class Mario extends Component {
         ApiService.findEmployeeByUsername().then(resp => resp.json())
             .then(resp => this.setState({ employee: { id: resp.id } })
             )
-           // .then(resp => console.log(resp));
 
 
-        
+        const handler = e => this.setState({ matches: e.matches });
+        window.matchMedia("(min-width: 768px)").addEventListener('change', handler);
+
+
 
 
     }
@@ -120,7 +124,10 @@ class Mario extends Component {
     submitHandler = e => {
         e.preventDefault()
         console.log(this.state)
-        ApiService.sendBookingRequest(this.state)
+        ApiService.sendBookingRequest(this.state).catch(err => {
+            this.setState({ errorMessage: err.message });
+        })
+
 
     }
 
@@ -128,8 +135,22 @@ class Mario extends Component {
 
         return (
 
-            <div>
-                <h1 style={{color:"white"}} >Willkommen im Büro Mario</h1>
+            <div className='column' style={{
+                backgroundColor: "#101522",
+                alignItems: 'center',
+                justifyContent: 'center',
+
+
+            }}            >
+                <h1 style={{ color: "white" }} >Willkommen im Büro Mario</h1>
+
+
+                <div >
+                    <p>  <ShowBlockedBookings value={2}></ShowBlockedBookings></p>
+
+                </div>
+
+
 
 
 
@@ -137,39 +158,56 @@ class Mario extends Component {
 
                 <div style={{
                     textAlign: 'center',
-                    display: 'flex',
                     justifyContent: 'center',
                     alignItems: 'center',
                 }}>
 
-                    <img src={testfloor} alt="this is a floorplan" width="750" height="560" align='middle' usemap="#floormap" />
-                    <map name="floormap">
 
 
-                        <area shape="circle" coords="90,460,30" alt="Platz1" onClick={this.getWorkingPlace}></area>
-                        <area shape="circle" coords="230,460,30" alt="Platz2" onClick={this.getWorkingPlace2}></area>
-                        <area shape="circle" coords="410,460,30" alt="Platz3" onClick={this.getWorkingPlace3}></area>
-                        <area shape="circle" coords="90,460,30" alt="Platz1" onClick={this.getWorkingPlace4}></area>
-                        <area shape="circle" coords="230,460,30" alt="Platz2" onClick={this.getWorkingPlace5}></area>
-                        <area shape="circle" coords="410,460,30" alt="Platz3" onClick={this.getWorkingPlace6}></area>
+                    {this.state.matches && (<img src={testfloor} alt="this is a floorplan" width="750" height="560" align='middle' usemap="#floormap" />
+                    )}
 
-                    </map>
+                    {this.state.matches && (<map name="floormap">
+
+
+                        <area shape="circle" coords="90,130,50" alt="Platz1" onClick={this.getWorkingPlace}></area>
+                        <area shape="circle" coords="375,120,50" alt="Platz6" onClick={this.getWorkingPlace6}></area>
+                        <area shape="circle" coords="660,130,50" alt="Platz2" onClick={this.getWorkingPlace2}></area>
+
+                        <area shape="circle" coords="250,300,50" alt="Platz3" onClick={this.getWorkingPlace3}></area>
+
+                        <area shape="circle" coords="375,300,50" alt="Platz1" onClick={this.getWorkingPlace4}></area>
+                        <area shape="circle" coords="480,300,50" alt="Platz2" onClick={this.getWorkingPlace5}></area>
+
+                    </map>)}
+
+                    {!this.state.matches && (<img src={testfloor} alt="this is a floorplan" width="350" height="460" align='middle' usemap="#floormap" />
+                    )}
+
+                    {!this.state.matches && (<map name="floormap">
+
+
+                        <area shape="circle" coords="40,120,30" alt="Platz1" onClick={this.getWorkingPlace}></area>
+                        <area shape="circle" coords="310,120,30" alt="Platz2" onClick={this.getWorkingPlace2}></area>
+
+                        <area shape="circle" coords="125,260,30" alt="Platz3" onClick={this.getWorkingPlace3}></area>
+                        <area shape="circle" coords="175,260,30" alt="Platz4" onClick={this.getWorkingPlace4}></area>
+                        <area shape="circle" coords="225,260,30" alt="Platz5" onClick={this.getWorkingPlace5}></area>
+
+                        <area shape="circle" coords="175,110,30" alt="Platz6" onClick={this.getWorkingPlace6}></area>
+
+                    </map>)}
 
                     {/* INPUT FIELDS */}
 
                     <div className="container">
-                
-                    <div style={{ width: '1400px' }} className="row">
+
+                        <div className="row">
                             <div className="card col-md-6 offset-md-3 offset-md-3">
 
 
                                 <div className="card-body">
 
-                                <div style={{ width: '500px' }}>
-                                        <p>Folgende Plätze sind im Büro Mario geblockt:</p>
-                                        <p>  <ShowBlockedBookings value={2}></ShowBlockedBookings></p>
-
-                                    </div>
 
                                     <form>
 

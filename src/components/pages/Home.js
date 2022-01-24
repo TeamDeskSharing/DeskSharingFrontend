@@ -14,37 +14,7 @@ import earthSpec from '../../assets/images/landingpage/earthspec1k.jpg'
 
 import styled from 'styled-components';
 
- const Div1 = styled.div`
-  z-index: 1;
-  width: 100%;
-  max-width: 1300px;
-  margin-right: auto;
-  margin-left: auto;
-  padding-right: 50px;
-  padding-left: 50px;
-  @media screen and (max-width: 651px) {
-    padding-right: 30px;
-    padding-left: 30px;
-  }
-`;
 
-
-             
-
-const Div2 = styled.div`
-display: 'flex',
-justifyContent: 'right',
-alignItems: 'right',
-
-height: '600px',
-width: '600px'
-
-
-@media screen and (max-width: 651px) {
-    height: '200px',
-    width: '200px'
-  }
-`;
 
 
 class Home extends Component {
@@ -90,8 +60,8 @@ class Home extends Component {
             const controls = new OrbitControls(camera, document.querySelector("#c"));
             controls.target.set(0, 0, 0);
             controls.enableDamping = true;
-           controls.enableRotate = false;
-           controls.enableZoom = false;
+            controls.enableRotate = false;
+            controls.enableZoom = true;
             controls.update();
 
 
@@ -131,8 +101,8 @@ class Home extends Component {
 
 
             //------------------------ATMOSPHERE------------------------------------
-            
-                //custom shader material 
+
+            //custom shader material 
             const atmosphericGlow = new THREE.Mesh(
                 new THREE.SphereGeometry(r, d, e),
                 new THREE.ShaderMaterial(
@@ -206,7 +176,7 @@ class Home extends Component {
                     }); */
 
             // --------------------------orbiting table--------------------------------------------------------------
-            
+
             // modelle koennen alternativ von einem google drive account geladen werden
 
             // GLTFloader.load('https://drive.google.com/uc?export=download&id=1_DDFce6V9xlJ8kJo_eRAZdURPYKGf8wC', function(glb) {
@@ -323,7 +293,7 @@ class Home extends Component {
                 }}>
 
 
-           
+
 
 
 
@@ -331,31 +301,31 @@ class Home extends Component {
                 <div>
 
 
-                <h1 style={{ color: 'red' }}>
-                    <FormattedMessage
-                        id="app.content"
-                    >
-                    </FormattedMessage>
-                </h1>
+                    <h1 style={{ color: 'red' }}>
+                        <FormattedMessage
+                            id="app.content"
+                        >
+                        </FormattedMessage>
+                    </h1>
 
-                <p style={{ color: 'red' }}>
-                    <FormattedMessage
-                        id="app.channel.plug"
-                        values={{ channelName: "DESKSHARING" }}
-                    >
+                    <p style={{ color: 'red' }}>
+                        <FormattedMessage
+                            id="app.channel.plug"
+                            values={{ channelName: "DESKSHARING" }}
+                        >
 
-                    </FormattedMessage></p>
+                        </FormattedMessage></p>
 
                     <p style={{ color: 'green' }}>Window size: {this.state.width} x {this.state.height} </p>
                     <p style={{ color: 'red' }}>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit,
 
                     </p>
-                    <p style={{ color: 'red'}}>sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                    <p style={{ color: 'red'}}> Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </p>
-                   <p style={{ color: 'red'}}>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+                    <p style={{ color: 'red' }}>sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                    <p style={{ color: 'red' }}> Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </p>
+                    <p style={{ color: 'red' }}>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
 
-<p style={{ color: 'red'}}> Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
+                    <p style={{ color: 'red' }}> Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
 
 
 
@@ -370,28 +340,46 @@ class Home extends Component {
 
 
 
-                <div id='divR'
+
+
+                {this.state.width > 1200 ? (<div id='divR'
 
                     style={{
                         display: 'flex',
                         justifyContent: 'right',
                         alignItems: 'right',
-                      
+
                         height: '900px',
                         width: '900px'
 
                     }}
                 >
+
+
                     <canvas id='c'></canvas>
+                </div>) : (<div id='divR'
+
+                    style={{
+                        display: 'flex',
+                        justifyContent: 'right',
+                        alignItems: 'right',
+
+                        height: '300px',
+                        width: '300px'
+
+                    }}
+                >
+                    <canvas id='c'></canvas>
+                </div>)}
+
+
+
+
+
+
+                <div>
+
                 </div>
-     
-
-
-
-
-<div>
-
-</div>
 
             </div>
 

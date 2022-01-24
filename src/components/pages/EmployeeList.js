@@ -1,12 +1,11 @@
 import React from 'react'
 import ApiService from '../../APIService';
 
-import ParticleTest from '../particleAnimation/ParticleTest';
 
 
 function EmployeeList() {
 
-   
+
 
     const [employees, setEmployees] = React.useState([]);
 
@@ -14,51 +13,64 @@ function EmployeeList() {
 
     React.useEffect(() => {
 
-            ApiService.getAllEmployees() .then(employees => setEmployees(employees));
+        ApiService.getAllEmployees().then(employees => setEmployees(employees));
     }, []);
 
 
 
 
     const getEmployeeByUsername = event => {
-        setName(event.target.value);  };
-    
-      const printUsername = () => {
+        setName(event.target.value);
+    };
+
+    const printUsername = () => {
 
 
-        ApiService.getEmployeeByUsername(name)
-            .then(res => res.json())
-            .then(res => setName(res))
-            .catch(err => console.log(err.message));
+        let user = localStorage.getItem("username")
+
+        if (user !== 'admin') {
+            ApiService.getEmployeeByUsername(name)
+                .then(res => res.json())
+                .then(res => setName(res))
+                .catch(err => console.log(err.message));
+
+        } else {
+            ApiService.getEmployeeByUsernameAdmin(name)
+                .then(res => res.json())
+                .then(res => setName(res))
+                .catch(err => console.log(err.message));
+
+        }
+
 
     };
 
 
     return (
-        <div style={{       backgroundColor: "#101522"}}>
+        <div style={{ backgroundColor: "#101522" }}>
 
 
 
-      <input onChange={getEmployeeByUsername} placeholder="Enter name"/>      <button onClick={printUsername}>Mitarbeiter suchen</button>
-      <h1 style={{color:"white"}}>Mitarbeiter mit Username: {name.username} hat Telefonnummer: {name.phonenumber}</h1>
+            <input onChange={getEmployeeByUsername} placeholder="Usernamen eingeben!" />      <button onClick={printUsername}>Mitarbeiter suchen</button>
+            <h1 style={{ color: "white" }}>Mitarbeiter mit Username: {name.username} hat Telefonnummer: {name.phonenumber} und Email: {name.email}</h1>
 
-            <h2 style={{color:"white"}} className="text-center">Mitarbeiter Liste</h2>
+            <h2 style={{ color: "white" }} className="text-center">Mitarbeiter Liste</h2>
             <div className="row">
 
             </div>
 
-            <div style={{       backgroundColor: "#101522"}}className="row">
+            <div style={{ backgroundColor: "#101522" }} className="row">
                 <table className="table table-striped table-bordered">
-               
+
 
                     <thead>
                         <tr>
-                            <th  style={{color:"white"}}>ID</th>
-                            <th style={{color:"white"}}>User</th>
+                            {/*  <th  style={{color:"white"}}>ID</th> */}
+                            <th style={{ color: "white" }}>User</th>
 
-                            <th style={{color:"white"}}>Name</th>
-                            <th style={{color:"white"}}>Telefon</th>
-                            <th style={{color:"white"}}>Email</th>
+                            <th style={{ color: "white" }}>Name</th>
+                            <th style={{ color: "white" }}>Telefon</th>
+                            <th style={{ color: "white" }}>Email</th>
 
                         </tr>
 
@@ -68,13 +80,13 @@ function EmployeeList() {
                         {employees.map(
                             e =>
                                 <tr key={e.id}>
-                                    <td style={{color:"white"}}>{e.id}</td>
-                                    <td style={{color:"white"}}>{e.username}</td>
+                                    {/*    <td style={{color:"white"}}>{e.id}</td> */}
+                                    <td style={{ color: "white" }}>{e.username}</td>
 
-                                
-                                    <td style={{color:"white"}}>{e.lastname} {e.firstname}</td>
-                                    <td style={{color:"white"}}>{e.currentphonenumber}</td>
-                                    <td style={{color:"white"}}>{e.email}</td>
+
+                                    <td style={{ color: "white" }}>{e.lastname} {e.firstname}</td>
+                                    <td style={{ color: "white" }}>{e.currentphonenumber}</td>
+                                    <td style={{ color: "white" }}>{e.email}</td>
                                     <td>
 
                                     </td>

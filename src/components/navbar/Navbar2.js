@@ -72,20 +72,24 @@ function Navbar2() {
                                 </NavLinks>
                             </NavItem>
                             <NavItem>
-                                <NavLinks to='/services' onClick={closeMobileMenu}>
-                                    <FormattedMessage
-                                        id="navbar.services">
+                                {
+                                    username !== "admin" ?
+                                        <NavLinks to='/services' onClick={closeMobileMenu}>
+                                            <FormattedMessage
+                                                id="navbar.services">
 
-                                    </FormattedMessage>
-                                </NavLinks>
+                                            </FormattedMessage>
+                                        </NavLinks> : <p> </p>}
                             </NavItem>
                             <NavItem>
-                                <NavLinks to='/myBookings' onClick={closeMobileMenu}>
-                                    <FormattedMessage
-                                        id="navbar.products">
+                                {
+                                    username !== "admin" ?
+                                        <NavLinks to='/myBookings' onClick={closeMobileMenu}>
+                                            <FormattedMessage
+                                                id="navbar.products">
 
-                                    </FormattedMessage>
-                                </NavLinks>
+                                            </FormattedMessage>
+                                        </NavLinks> : <p></p>}
                             </NavItem>
                             <NavItem>
                                 <NavLinks to='/employeelist' onClick={closeMobileMenu}>
@@ -97,17 +101,17 @@ function Navbar2() {
                             </NavItem>
                             <NavItem>
                                 {
-                                username=="admin" ? 
+                                    username == "admin" ?
 
-                                    <NavLinks to='/adminbooking' onClick={closeMobileMenu}>
-                                    <FormattedMessage
-                                        id="navbar.adminbooking">
+                                        <NavLinks to='/adminbooking' onClick={closeMobileMenu}>
+                                            <FormattedMessage
+                                                id="navbar.adminbooking">
 
-                                    </FormattedMessage>
-                                </NavLinks> : <p></p>
+                                            </FormattedMessage>
+                                        </NavLinks> : <p></p>
                                 }
-          
-          
+
+
                             </NavItem>
                             <NavItemBtn>
                                 {button ? (
@@ -122,7 +126,7 @@ function Navbar2() {
                                         </Button>
                                     </NavBtnLink>
                                 ) : (
-                                    <NavBtnLink to='/sign-up'>
+                                    <NavBtnLink to='/login'>
                                         <Button onClick={closeMobileMenu} fontBig primary>
                                             {/*                                          <FormattedMessage
                                                 id="navbar.login">

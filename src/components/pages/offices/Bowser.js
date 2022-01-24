@@ -24,9 +24,12 @@ class Bowser extends Component {
             employee: { id: "" },
             workplace: { id: "" },
 
-            officeid:3,
+            officeid: 3,
 
-            blockedbookings:[]
+            blockedbookings: [],
+            matches: window.matchMedia("(min-width: 768px)").matches,
+            errorMessage: ''
+
 
 
         }
@@ -51,10 +54,10 @@ class Bowser extends Component {
         ApiService.findEmployeeByUsername().then(resp => resp.json())
             .then(resp => this.setState({ employee: { id: resp.id } })
             )
-           // .then(resp => console.log(resp));
 
 
-        
+        const handler = e => this.setState({ matches: e.matches });
+        window.matchMedia("(min-width: 768px)").addEventListener('change', handler);
 
 
     }
@@ -122,26 +125,38 @@ class Bowser extends Component {
     submitHandler = e => {
         e.preventDefault()
         console.log(this.state)
-        ApiService.sendBookingRequest(this.state)
+        ApiService.sendBookingRequest(this.state).catch(err => {
+            this.setState({ errorMessage: err.message });
+        })
+
 
     }
 
     render() {
-        const current = new Date();
 
         return (
 
-            <div>
-                <h1 style={{color:"white"}} >Willkommen im Büro Bowser</h1>
+
+            <div className='column' style={{
+                backgroundColor: "#101522",
+                alignItems: 'center',
+                justifyContent: 'center',
 
 
+            }}            >
+                <h1 style={{ color: "white" }} >Willkommen im Büro Bowser</h1>
+
+                <div >
+                    <p>  <ShowBlockedBookings value={3}></ShowBlockedBookings></p>
+
+                </div>
 
 
 
                 <div style={{
-                
+
                     display: 'flex',
-                    flexDirection:'column',
+                    flexDirection: 'column',
                     justifyContent: 'center',
                     textAlign: 'center',
                     alignItems: 'center',
@@ -149,44 +164,66 @@ class Bowser extends Component {
 
 
 
-                    <img src={testfloor} alt="this is a floorplan" width="750" height="560" align='middle' usemap="#floormap" />
-                    <map name="floormap">
+                    {this.state.matches && (
+                        <img src={testfloor} alt="this is a floorplan" width="750" height="560" align='middle' usemap="#floormap" />
+
+                    )}
 
 
-                        <area shape="circle" coords="90,460,30" alt="Platz1" onClick={this.getWorkingPlace}></area>
-                        <area shape="circle" coords="230,460,30" alt="Platz2" onClick={this.getWorkingPlace2}></area>
-                        <area shape="circle" coords="410,460,30" alt="Platz3" onClick={this.getWorkingPlace3}></area>
-                        <area shape="circle" coords="90,460,30" alt="Platz1" onClick={this.getWorkingPlace4}></area>
-                        <area shape="circle" coords="230,460,30" alt="Platz2" onClick={this.getWorkingPlace5}></area>
-                        <area shape="circle" coords="410,460,30" alt="Platz3" onClick={this.getWorkingPlace6}></area>
-                        <area shape="circle" coords="90,460,30" alt="Platz1" onClick={this.getWorkingPlace7}></area>
-           
+                    {this.state.matches && (
+                        <map name="floormap">
 
 
-                    </map>
+                            <area shape="circle" coords="50,200,60" alt="Platz1" onClick={this.getWorkingPlace}></area>
+                            <area shape="circle" coords="150,200,60" alt="Platz2" onClick={this.getWorkingPlace2}></area>
+                            <area shape="circle" coords="250,200,60" alt="Platz3" onClick={this.getWorkingPlace3}></area>
+                            <area shape="circle" coords="400,200,60" alt="Platz1" onClick={this.getWorkingPlace4}></area>
+                            <area shape="circle" coords="520,200,60" alt="Platz2" onClick={this.getWorkingPlace5}></area>
+                            <area shape="circle" coords="640,200,60" alt="Platz3" onClick={this.getWorkingPlace6}></area>
+                            <area shape="circle" coords="520,380,60" alt="Platz1" onClick={this.getWorkingPlace7}></area>
+
+
+
+                        </map>
+
+                    )}
+
+
+                    {!this.state.matches && (
+                        <img src={testfloor} alt="this is a floorplan" width="380" height="420" align='middle' usemap="#floormap" />
+
+                    )}
+
+
+                    {!this.state.matches && (
+                        <map name="floormap">
+
+
+                            <area shape="circle" coords="30,180,30" alt="Platz1" onClick={this.getWorkingPlace}></area>
+                            <area shape="circle" coords="70,180,30" alt="Platz2" onClick={this.getWorkingPlace2}></area>
+                            <area shape="circle" coords="110,180,30" alt="Platz3" onClick={this.getWorkingPlace3}></area>
+                            <area shape="circle" coords="200,180,30" alt="Platz4" onClick={this.getWorkingPlace4}></area>
+                            <area shape="circle" coords="260,180,30" alt="Platz5" onClick={this.getWorkingPlace5}></area>
+                            <area shape="circle" coords="320,180,30" alt="Platz6" onClick={this.getWorkingPlace6}></area>
+                            <area shape="circle" coords="260,300,30" alt="Platz7" onClick={this.getWorkingPlace7}></area>
+
+
+
+                        </map>
+
+                    )}
 
                     {/* INPUT FIELDS */}
 
-                    <div style={{
-                
-                display: 'flex',
-                flexDirection:'column',
-                justifyContent: 'center',
-                textAlign: 'center',
-                alignItems: 'center',
-            }} className="container">
-                      
-                    <div style={{ width: '1400px' }} className="row">
+                    <div className="container">
+
+                        <div className="row">
                             <div className="card col-md-6 offset-md-3 offset-md-3">
 
 
                                 <div className="card-body">
 
-                                <div style={{ width: '500px' }}>
-                                        <p>Folgende Plätze sind im Büro Bowser geblockt:</p>
-                                        <p>  <ShowBlockedBookings value={3}></ShowBlockedBookings></p>
 
-                                    </div>
 
                                     <form>
 
@@ -215,6 +252,8 @@ class Bowser extends Component {
 
                                         <button className="btn btn-danger" onClick={this.cancel.bind(this)} style={{ marginLeft: "10px" }}>Abbrechen</button>
 
+                                        {this.state.errorMessage &&
+                                            <h3 className="error"> Biite überprüfen Sie Ihre Eingabe. Ist ein Platz ausgewählt? Eingabe im richtigen Datumsformat ? Fehlermeldung: {this.state.errorMessage} </h3>}
                                     </form>
 
                                 </div>

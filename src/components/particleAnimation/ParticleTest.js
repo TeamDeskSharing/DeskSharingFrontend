@@ -2,26 +2,26 @@ import React, { Component } from 'react'
 import Particle from "react-tsparticles";
 
 export class ParticleTest extends Component {
-    constructor(props) {
-        super(props);
-    
-        this.particlesInit = this.particlesInit.bind(this);
-        this.particlesLoaded = this.particlesLoaded.bind(this);
-      }
-    
-      particlesInit(main) {
-        console.log(main);
-    
-        // you can initialize the tsParticles instance (main) here, adding custom shapes or presets
-      }
-    
-      particlesLoaded(container) {
-        console.log(container);
-      }
-    
-      render() {
-        return (
-          <Particle
+  constructor(props) {
+    super(props);
+
+    this.particlesInit = this.particlesInit.bind(this);
+    this.particlesLoaded = this.particlesLoaded.bind(this);
+  }
+
+  particlesInit(main) {
+    console.log(main);
+
+    // you can initialize the tsParticles instance (main) here, adding custom shapes or presets
+  }
+
+  particlesLoaded(container) {
+    console.log(container);
+  }
+
+  render() {
+    return (
+      <Particle
         id="tsparticles"
         init={this.particlesInit}
         loaded={this.particlesLoaded}
@@ -104,8 +104,8 @@ export class ParticleTest extends Component {
           detectRetina: true,
         }}
       />
-        );
-      }
+    );
+  }
 }
 
 export default ParticleTest

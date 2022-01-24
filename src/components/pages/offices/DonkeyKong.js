@@ -4,7 +4,6 @@ import testfloor from '../../../assets/images/floorplans/Grundrisstest.png'
 import React, { Component } from 'react';
 import ApiService from '../../../APIService';
 import ShowBlockedBookings from './ShowBlockedBookings';
-import ParticleTest from '../../particleAnimation/ParticleTest';
 class DonkeyKong extends Component {
 
 
@@ -53,11 +52,11 @@ class DonkeyKong extends Component {
 
         ApiService.findEmployeeByUsername().then(resp => resp.json())
             .then(resp => this.setState({ employee: { id: resp.id } })
-            
+
             )
 
-            const handler = e => this.setState({matches: e.matches});
-            window.matchMedia("(min-width: 768px)").addEventListener('change', handler);
+        const handler = e => this.setState({ matches: e.matches });
+        window.matchMedia("(min-width: 768px)").addEventListener('change', handler);
 
 
 
@@ -93,12 +92,10 @@ class DonkeyKong extends Component {
     }
     getWorkingPlace3 = (e) => {
         this.setState({ workplace: { id: '3' } })
-    }  
-      getWorkingPlace4 = (e) => {
+    }
+    getWorkingPlace4 = (e) => {
         this.setState({ workplace: { id: '4' } })
     }
-
-
 
 
 
@@ -117,10 +114,10 @@ class DonkeyKong extends Component {
     submitHandler = e => {
         e.preventDefault()
         console.log(this.state)
-        ApiService.sendBookingRequest(this.state)       .catch(err => { 
-            this.setState({errorMessage: err.message});
-          })
-        
+        ApiService.sendBookingRequest(this.state).catch(err => {
+            this.setState({ errorMessage: err.message });
+        })
+
 
     }
 
@@ -140,9 +137,9 @@ class DonkeyKong extends Component {
                 <h1 style={{ color: "white" }} >Willkommen im Büro Donkey Kong</h1>
 
                 <div >
-                                        <p>  <ShowBlockedBookings value={1}></ShowBlockedBookings></p>
+                    <p>  <ShowBlockedBookings value={1}></ShowBlockedBookings></p>
 
-                                    </div>
+                </div>
 
 
 
@@ -153,55 +150,49 @@ class DonkeyKong extends Component {
                     textAlign: 'center',
                     justifyContent: 'center',
                     alignItems: 'center',
-                    
-                    
+
+
                 }}>
 
-{this.state.matches && (      <img src={testfloor} alt="this is a floorplan" width="700" height="700" align='middle' usemap="#floormap" />)}
+                    {this.state.matches && (<img src={testfloor} alt="this is a floorplan" width="700" height="700" align='middle' usemap="#floormap" />)}
 
-{this.state.matches && (   
+                    {this.state.matches && (
 
-<map name="floormap">
-
-
-<area shape="circle" coords="50,550,50" alt="Platz1"  onClick={this.getWorkingPlace}></area>
-<area shape="circle" coords="230,550,50" alt="Platz2" onClick={this.getWorkingPlace2}></area>
-<area shape="circle" coords="410,550,50" alt="Platz3" onClick={this.getWorkingPlace3}></area>
-<area shape="circle" coords="90,100,50" alt="Platz4" onClick={this.getWorkingPlace4}></area>
+                        <map name="floormap">
 
 
-
-</map>
+                            <area shape="circle" coords="50,550,50" alt="Platz1" onClick={this.getWorkingPlace}></area>
+                            <area shape="circle" coords="230,550,50" alt="Platz2" onClick={this.getWorkingPlace2}></area>
+                            <area shape="circle" coords="410,550,50" alt="Platz3" onClick={this.getWorkingPlace3}></area>
+                            <area shape="circle" coords="90,100,50" alt="Platz4" onClick={this.getWorkingPlace4}></area>
 
 
 
-
-)}
-
-      {!this.state.matches && (      <img src={testfloor} alt="this is a floorplan" width="360" height="400"/*  width="750" height="560" */ align='middle' usemap="#floormap" />
-)}
-
-
-<map name="floormap">
-
-
-<area shape="circle" coords="90,350,50" alt="Platz1" onClick={this.getWorkingPlace}></area>
-<area shape="circle" coords="160,350,50" alt="Platz2" onClick={this.getWorkingPlace2}></area>
-<area shape="circle" coords="250,350,50" alt="Platz3" onClick={this.getWorkingPlace3}></area>
-<area shape="circle" coords="100,50,50" alt="Platz4" onClick={this.getWorkingPlace4}></area>
-
-
-
-</map>
+                        </map>
 
 
 
 
+                    )}
+
+                    {!this.state.matches && (<img src={testfloor} alt="this is a floorplan" width="360" height="400"/*  width="750" height="560" */ align='middle' usemap="#floormap" />
+                    )}
+
+
+                    <map name="floormap">
+
+
+                        <area shape="circle" coords="40,350,50" alt="Platz1" onClick={this.getWorkingPlace}></area>
+                        <area shape="circle" coords="90,350,50" alt="Platz2" onClick={this.getWorkingPlace2}></area>
+                        <area shape="circle" coords="170,350,50" alt="Platz3" onClick={this.getWorkingPlace3}></area>
+                        <area shape="circle" coords="50,50,50" alt="Platz4" onClick={this.getWorkingPlace4}></area>
 
 
 
+                    </map>
 
-                   
+
+
                     {/* INPUT FIELDS */}
 
                     <div className="container">
@@ -211,7 +202,7 @@ class DonkeyKong extends Component {
                             <div className="card col-md-6 offset-md-3 offset-md-3">
 
 
-                                <div  className="card-body" >
+                                <div className="card-body" >
 
 
                                     <form>
@@ -240,8 +231,8 @@ class DonkeyKong extends Component {
 
 
                                         <button className="btn btn-danger" onClick={this.cancel.bind(this)} style={{ marginLeft: "10px" }}>Abbrechen</button>
-                                        { this.state.errorMessage &&
-  <h3 className="error"> Biite überprüfen Sie Ihre Eingabe. Ist ein Platz ausgewählt? Eingabe im richtigen Datumsformat ? Fehlermeldung: { this.state.errorMessage } </h3> }
+                                        {this.state.errorMessage &&
+                                            <h3 className="error"> Biite überprüfen Sie Ihre Eingabe. Ist ein Platz ausgewählt? Eingabe im richtigen Datumsformat ? Fehlermeldung: {this.state.errorMessage} </h3>}
                                     </form>
 
                                 </div>
@@ -251,11 +242,10 @@ class DonkeyKong extends Component {
                     </div>
 
                 </div>
-              
-            {/*   <div style= {{height:1050}}></div> */}
 
 
-                
+
+
 
 
 

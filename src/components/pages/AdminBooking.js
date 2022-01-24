@@ -14,24 +14,20 @@ function AdminBooking() {
 
     React.useEffect(() => {
 
-            ApiService.getAllRequest().then(bookingRequest => setBookingRequest(bookingRequest));
+        ApiService.getAllRequest().then(bookingRequest => setBookingRequest(bookingRequest));
     }, []);
 
 
-   function declineBooking(id){
-        ApiService.declineBooking(id);
-        
+    function declineBooking(id) {
+        ApiService.leaveWorkspace(id);
+
     }
 
-    function acceptBooking(id){
+    function acceptBooking(id) {
         ApiService.acceptBooking(id);
     }
 
-  
-    function renderDateText(date){
 
-
-    }
 
 
 
@@ -39,27 +35,25 @@ function AdminBooking() {
     return (
         <div>
 
-            <h2 style={{color:"white"}} className="text-center">Buchungsanfragen Liste</h2>
+            <h2 style={{ color: "white" }} className="text-center">Buchungsanfragen Liste</h2>
             <div className="row">
 
             </div>
 
-            <div style={{       backgroundColor: "#101522"}}className="row">
+            <div style={{ backgroundColor: "#101522" }} className="row">
                 <table className="table table-striped table-bordered">
 
                     <thead>
                         <tr>
-                        <th style={{color:"white"}}>ID</th>
-                            <th  style={{color:"white"}}>Name</th>
+                            <th style={{ color: "white" }}>Name</th>
 
-                            <th style={{color:"white"}}>Startzeit</th>
-                            <th style={{color:"white"}}>Endzeit</th>
-                            <th style={{color:"white"}}>Status</th>
-                            <th style={{color:"white"}}>Arbeitsplatz</th>
-                            <th style={{color:"white"}}>Büro</th>
+                            <th style={{ color: "white" }}>Startzeit</th>
+                            <th style={{ color: "white" }}>Endzeit</th>
+                            <th style={{ color: "white" }}>Status</th>
+                            <th style={{ color: "white" }}>Arbeitsplatz</th>
 
 
-                            <th style={{color:"white"}}>Actions</th>
+                            <th style={{ color: "white" }}>Actions</th>
 
                         </tr>
 
@@ -70,18 +64,18 @@ function AdminBooking() {
                         {bookingRequest.map(
                             e =>
                                 <tr key={e.id}>
-                                   <td style={{color:"white"}}>{e.id}</td>
 
 
-                                    <td style={{color:"white"}}>{e.employee.firstname}</td>
-                             
 
-                                    <td style={{color:"white"}}>{e.timestart.substr(0,10)} {e.timestart.charAt(11)+e.timestart.charAt(12)+e.timestart.charAt(13)+e.timestart.charAt(14)+e.timestart.charAt(15)}</td>
-                                    <td style={{color:"white"}}>{e.timeend.substr(0,10)} {e.timeend.charAt(11)+e.timeend.charAt(12)+e.timeend.charAt(13)+e.timeend.charAt(14)+e.timeend.charAt(15)}</td>
-                                    <td style={{color:"white"}}>{e.status}</td>
-                                    <td style={{color:"white"}}>{e.workplace.id}</td>
+                                    <td style={{ color: "white" }}>{e.employee.firstname}</td>
 
-                                    <td style={{color:"white"}}>{e.workplace.office.description}</td>
+
+                                    <td style={{ color: "white" }}>{e.timestart.substr(0, 10)} {e.timestart.charAt(11) + e.timestart.charAt(12) + e.timestart.charAt(13) + e.timestart.charAt(14) + e.timestart.charAt(15)}</td>
+                                    <td style={{ color: "white" }}>{e.timeend.substr(0, 10)} {e.timeend.charAt(11) + e.timeend.charAt(12) + e.timeend.charAt(13) + e.timeend.charAt(14) + e.timeend.charAt(15)}</td>
+                                    <td style={{ color: "white" }}>{e.status}</td>
+                                    <td style={{ color: "white" }}>{e.workplace.id} {e.workplace.office.description}</td>
+
+
 
 
                                     <td>

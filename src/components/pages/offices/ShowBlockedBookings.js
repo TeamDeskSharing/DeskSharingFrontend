@@ -2,20 +2,19 @@ import React from 'react'
 
 function ShowBlockedBookings(props) {
 
-   
+
 
     const [blockedBookings, setBlockedBookings] = React.useState([]);
 
 
-    function getProps()
-    {
+    function getProps() {
         let id = props.value;
         return id;
     }
 
 
 
-    const urlWP=`http://131.173.88.173:443/api/v1/booking/e1/getBlockedBookingsByOffice/${getProps()}`;
+    const urlWP = `http://localhost:8080/api/v1/booking/e1/getBlockedBookingsByOffice/${getProps()}`;
     const token = localStorage.getItem('token')
 
     React.useEffect(() => {
@@ -42,44 +41,47 @@ function ShowBlockedBookings(props) {
     return (
         <div>
 
-            <h2 style={{color:"white"}} className="text-center">Geblockte Arbeitsplätze</h2>
+            <h2 style={{ color: "white" }} className="text-center">Geblockte Arbeitsplätze</h2>
 
 
-            <div style={{width:100}} className="row">
+            <div style={{ width: 100 }} className="row">
 
             </div>
 
-            <div style={{  resize:'both',
-    overflow:'auto',
-    justifyContent: 'center',
-    alignItems: 'center',
-    
-    }} className="row">
-                <table style={{width:100}}className="table table-striped table-bordered">
+            <div style={{
+                resize: 'both',
+                overflow: 'auto',
+                justifyContent: 'center',
+                alignItems: 'center',
+
+            }} className="row">
+                <table style={{ width: 100 }} className="table table-striped table-bordered">
 
                     <thead>
                         <tr>
-        
-                            <th style={{color:"white"}}>Startzeit</th>
-                            <th style={{color:"white"}}>Endzeit</th>
-                            <th style={{color:"white"}}>Arbeitsplatz</th>
+
+                            <th style={{ color: "white" }}>Startzeit</th>
+                            <th style={{ color: "white" }}>Endzeit</th>
+                            <th style={{ color: "white" }}>Arbeitsplatz</th>
 
                         </tr>
 
                     </thead>
 
                     <tbody>
-                     
+
                         {blockedBookings.map(
                             e =>
                                 <tr key={e.id}>
-                       
-                                    <td style={{color:"white"}}>{e.timestart}</td>
-                                    <td style={{color:"white"}}>{e.timeend}</td>
-                                    <td style={{color:"white"}}>{e.workplace.id}</td>
-                                 
 
-                                 
+
+
+                                    <td style={{ color: "white" }}>{e.timestart.substr(0, 10)} {e.timestart.charAt(11) + e.timestart.charAt(12) + e.timestart.charAt(13) + e.timestart.charAt(14) + e.timestart.charAt(15)}</td>
+                                    <td style={{ color: "white" }}>{e.timeend.substr(0, 10)} {e.timeend.charAt(11) + e.timeend.charAt(12) + e.timeend.charAt(13) + e.timeend.charAt(14) + e.timeend.charAt(15)}</td>
+                                    <td style={{ color: "white" }}>{e.workplace.id}</td>
+
+
+
 
 
                                 </tr>

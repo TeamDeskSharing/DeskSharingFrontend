@@ -17,27 +17,24 @@ function App() {
 
   const [width, setWindowWidth] = useState(0);
 
-/*   useEffect(()=>{
-    const handler = e => setWindow({e});
-    windows.matchMedia("(min-width: 768px)").addEventListener('change', handler);
-
-  }) */
 
 
-  useEffect(() => { 
+
+  useEffect(() => {
 
     updateDimensions();
 
-    window.addEventListener("resize", updateDimensions);     return () => 
-      window.removeEventListener("resize",updateDimensions);    }, [])   
-      
-      const updateDimensions = () => {
-     const width = window.innerWidth
-     setWindowWidth(width)
-   }
-  
+    window.addEventListener("resize", updateDimensions); return () =>
+      window.removeEventListener("resize", updateDimensions);
+  }, [])
 
-   const responsive = {
+  const updateDimensions = () => {
+    const width = window.innerWidth
+    setWindowWidth(width)
+  }
+
+
+  const responsive = {
     showFooter: width > 1023
   }
 
@@ -78,38 +75,42 @@ function App() {
 
 
       {
-        width > 1200 ? (  <div style={
-          { marginBottom: '70vh',
-          backgroundColor: "#101522"
-           }}>
-       
-        </div>):(
-         <div style={
-          { marginBottom: '150vh',
-          backgroundColor: "#101522"
-           }}>
-       
-        </div>)
-  
-}
+        width > 1200 ? (<div style={
+          {
+            marginBottom: '100vh',
+            backgroundColor: "#101522"
+          }}>
 
-    
+        </div>) : (
+          <div style={
+            {
+              marginBottom: '250vh',
+              backgroundColor: "#101522"
+            }}>
 
-{console.log(width)}
+          </div>)
+
+      }
 
 
 
-{
-  width > 1200 && (<Slider></Slider>)
-}
+      {console.log(width)}
 
 
- {width < 1200 ? (<div style={{height:300,         backgroundColor: "#101522"
-}}></div>):
- (<div style={{height:300,         backgroundColor: "#101522"
-}} ></div>)
- }
-{/*  {width < 700 &&(<div style={{height:100}}></div>)} */}
+
+      {
+        width > 1200 && (<Slider></Slider>)
+      }
+
+
+      {width < 1200 ? (<div style={{
+        height: 300, backgroundColor: "#101522"
+      }}></div>) :
+        (<div style={{
+          height: 300, backgroundColor: "#101522"
+        }} ></div>)
+      }
+
 
 
 
