@@ -10,7 +10,6 @@ import home from './components/pages/Home.js';
 import Services from './components/pages/Services.js'
 import EmployeeList from './components/pages/EmployeeList';
 import AdminBooking from './components/pages/AdminBooking';
-import ParticleTest from "./components/particleAnimation/ParticleTest"
 import { useEffect, useState } from "react"
 function App() {
 
@@ -77,7 +76,7 @@ function App() {
       {
         width > 1200 ? (<div style={
           {
-            marginBottom: '120vh',
+            marginBottom: '160vh',
             backgroundColor: "#101522"
           }}>
 
